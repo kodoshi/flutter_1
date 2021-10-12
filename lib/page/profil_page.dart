@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class MyProfilPage extends StatefulWidget {
   @override
@@ -6,7 +7,7 @@ class MyProfilPage extends StatefulWidget {
 }
 
 class _MyProfilPageState extends State<MyProfilPage> {
-  late var photoTaken = null;
+  Future<XFile?>? photoTaken;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +70,7 @@ class _MyProfilPageState extends State<MyProfilPage> {
                         color: Color.fromRGBO(142, 142, 147, 1),
                       )
                     else
-                      Text('MESSAGE'),
+                      Text('$photoTaken'),
                     Align(
                       alignment: FractionalOffset.bottomCenter,
                       child: Text(
@@ -128,6 +129,7 @@ class _MyProfilPageState extends State<MyProfilPage> {
           ),
           GestureDetector(
             onTap: () {
+              pickImageFromCamera(context: context);
               //add function take Picture
               print('jai pris la photo');
             },
@@ -156,8 +158,11 @@ class _MyProfilPageState extends State<MyProfilPage> {
     );
   }
 
-  /*Future _takePicture() async {
-    photoTaken = await ImagePicker.pickImage(source: ImageSource.camera);
+  Future<XFile?> pickImageFromCamera({
+    required BuildContext context,
+  }) async {
+    final _picker = ImagePicker();
+
+    photoTaken = _picker.pickImage(source: ImageSource.camera);
   }
-  */
 }
