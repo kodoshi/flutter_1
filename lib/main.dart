@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:flutter_1/user_statistics.dart';
+import 'package:flutter_1/page/user_statistics.dart';
 
 void main() => runApp(MyApp());
 
@@ -114,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage>
                     child: ElevatedButton(
                       child: Icon(Icons.add_box_rounded),
                       onPressed: () {
-                        Navigator.pushNamed(context, "/userStatistics");
+                        print("Hello");
                       },
                       style: ElevatedButton.styleFrom(
                         fixedSize: Size(60, 60),
