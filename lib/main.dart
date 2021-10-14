@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:flutter_1/user_statistics.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +14,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyHomePage(),
+        '/userStatistics': (context) => UserStatisticsPage(),
+      },
     );
   }
 }
@@ -39,9 +44,8 @@ class _MyHomePageState extends State<MyHomePage>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Center(
-            child: Text('Vaporware'),
-          ),
+          title: Text('Vaporware'),
+          centerTitle: true,
           backgroundColor: Colors.deepPurple,
         ),
         body: Row(
@@ -109,7 +113,9 @@ class _MyHomePageState extends State<MyHomePage>
                   Center(
                     child: ElevatedButton(
                       child: Icon(Icons.add_box_rounded),
-                      onPressed: () => print("MENU"),
+                      onPressed: () {
+                        Navigator.pushNamed(context, "/userStatistics");
+                      },
                       style: ElevatedButton.styleFrom(
                         fixedSize: Size(60, 60),
                         primary: Colors.black54,
