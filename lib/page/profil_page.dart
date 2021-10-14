@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_1/widget/bottom_navigation_bar_widget.dart';
 import 'package:image_picker/image_picker.dart';
 
 class MyProfilPage extends StatefulWidget {
@@ -152,7 +153,8 @@ class _MyProfilPageState extends State<MyProfilPage> {
                 ],
               ),
             ),
-          )
+          ),
+          //BottomNavigationBarWidget()
         ],
       ),
     );
