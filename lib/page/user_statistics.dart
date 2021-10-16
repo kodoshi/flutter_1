@@ -14,7 +14,7 @@ class _UserStatisticsPageState extends State<UserStatisticsPage> {
       child: Scaffold(
         appBar: AppBar(
           leading: BackButton(),
-          title: Text('Vaporware Profile'),
+          title: Text('VaporWare Profile'),
           centerTitle: true,
           backgroundColor: Colors.deepPurple,
         ),

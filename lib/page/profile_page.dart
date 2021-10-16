@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_1/widget/bottom_navigation_bar_widget.dart';
 import 'package:image_picker/image_picker.dart';
 
-class MyProfilPage extends StatefulWidget {
+class MyProfilePage extends StatefulWidget {
   @override
-  _MyProfilPageState createState() => _MyProfilPageState();
+  _MyProfilePageState createState() => _MyProfilePageState();
 }
 
-class _MyProfilPageState extends State<MyProfilPage> {
+class _MyProfilePageState extends State<MyProfilePage> {
   Future<XFile?>? photoTaken;
 
   @override
@@ -16,7 +16,7 @@ class _MyProfilPageState extends State<MyProfilPage> {
       backgroundColor: Color.fromRGBO(20, 25, 39, 1),
       appBar: AppBar(
         title: Center(
-          child: Text('Vaporware'),
+          child: Text('VaporWare'),
         ),
         backgroundColor: Colors.deepPurple,
       ),
