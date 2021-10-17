@@ -34,7 +34,7 @@ Map<String, String> specificPlaylistInfo = {
 List<MusicTile> specificTiles = [
   MusicTile(
     globalTileID: 0,
-    trackName: 'assets/sounds/tropical.mp3',
+    trackName: 'assets/sounds/lofi.mp3',
     imageName: 'assets/images/street-japan-night.jpg',
     metaTitle: 'Lo-Fi',
     metaArtist: 'Various Artists',
@@ -42,7 +42,7 @@ List<MusicTile> specificTiles = [
   ),
   MusicTile(
     globalTileID: 1,
-    trackName: 'assets/sounds/tropical.mp3',
+    trackName: 'assets/sounds/lofi.mp3',
     imageName: 'assets/images/street-japan-night.jpg',
     metaTitle: 'Lo-Fi',
     metaArtist: 'Various Artists',
@@ -50,7 +50,7 @@ List<MusicTile> specificTiles = [
   ),
   MusicTile(
     globalTileID: 2,
-    trackName: 'assets/sounds/tropical.mp3',
+    trackName: 'assets/sounds/lofi.mp3',
     imageName: 'assets/images/street-japan-night.jpg',
     metaTitle: 'Lo-Fi',
     metaArtist: 'Various Artists',
@@ -58,7 +58,7 @@ List<MusicTile> specificTiles = [
   ),
   MusicTile(
     globalTileID: 3,
-    trackName: 'assets/sounds/tropical.mp3',
+    trackName: 'assets/sounds/lofi.mp3',
     imageName: 'assets/images/street-japan-night.jpg',
     metaTitle: 'Lo-Fi',
     metaArtist: 'Various Artists',
@@ -67,34 +67,34 @@ List<MusicTile> specificTiles = [
   MusicTile(
     globalTileID: 4,
     trackName: 'assets/sounds/tropical.mp3',
-    imageName: 'assets/images/street-japan-night.jpg',
-    metaTitle: 'Lo-Fi',
+    imageName: 'assets/images/tropical-forest.png',
+    metaTitle: 'Tropical',
     metaArtist: 'Various Artists',
-    metaAlbum: 'Instrumentals',
+    metaAlbum: 'Nature',
   ),
   MusicTile(
     globalTileID: 5,
     trackName: 'assets/sounds/tropical.mp3',
-    imageName: 'assets/images/street-japan-night.jpg',
-    metaTitle: 'Lo-Fi',
+    imageName: 'assets/images/tropical-forest.png',
+    metaTitle: 'Tropical',
     metaArtist: 'Various Artists',
-    metaAlbum: 'Instrumentals',
+    metaAlbum: 'Nature',
   ),
   MusicTile(
     globalTileID: 6,
     trackName: 'assets/sounds/tropical.mp3',
-    imageName: 'assets/images/street-japan-night.jpg',
-    metaTitle: 'Lo-Fi',
+    imageName: 'assets/images/tropical-forest.png',
+    metaTitle: 'Tropical',
     metaArtist: 'Various Artists',
-    metaAlbum: 'Instrumentals',
+    metaAlbum: 'Nature',
   ),
   MusicTile(
     globalTileID: 7,
     trackName: 'assets/sounds/tropical.mp3',
-    imageName: 'assets/images/street-japan-night.jpg',
-    metaTitle: 'Lo-Fi',
+    imageName: 'assets/images/tropical-forest.png',
+    metaTitle: 'Tropical',
     metaArtist: 'Various Artists',
-    metaAlbum: 'Instrumentals',
+    metaAlbum: 'Nature',
   ),
 ];
 
@@ -116,19 +116,19 @@ List<MinimalMusicTile> placeholderTiles = [
     metaTitle: 'Trappin',
   ),
   MinimalMusicTile(
-    imageName: 'assets/images/street-japan-night.jpg',
-    metaTitle: 'Trappin',
+    imageName: 'assets/images/tropical-forest.png',
+    metaTitle: 'Tropical',
   ),
   MinimalMusicTile(
-    imageName: 'assets/images/street-japan-night.jpg',
-    metaTitle: 'Trappin',
+    imageName: 'assets/images/tropical-forest.png',
+    metaTitle: 'Tropical',
   ),
   MinimalMusicTile(
-    imageName: 'assets/images/street-japan-night.jpg',
-    metaTitle: 'Trappin',
+    imageName: 'assets/images/tropical-forest.png',
+    metaTitle: 'Tropical',
   ),
   MinimalMusicTile(
-    imageName: 'assets/images/street-japan-night.jpg',
-    metaTitle: 'Trappin',
+    imageName: 'assets/images/tropical-forest.png',
+    metaTitle: 'Tropical',
   ),
 ];

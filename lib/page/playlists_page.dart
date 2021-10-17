@@ -59,7 +59,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                           onTap: () {
                             specificPlaylistInfo = {
                               'id': '0',
-                              'mainName': 'Lo-Fi',
+                              'mainName': 'Trappin',
                               'description': 'Lorem Ipsum',
                               'category': 'Instrumentals',
                               'songs': 'lofi',
@@ -78,10 +78,10 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                           onTap: () {
                             specificPlaylistInfo = {
                               'id': '1',
-                              'mainName': 'Lo-Fi',
+                              'mainName': 'Trappin',
                               'description': 'Lorem Ipsum',
                               'category': 'Instrumentals',
-                              'songs': 'lofi4',
+                              'songs': 'lofi',
                             };
                             setState(() {
                             });
@@ -97,10 +97,10 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                           onTap: () {
                             specificPlaylistInfo = {
                               'id': '2',
-                              'mainName': 'Lo-Fi1',
-                              'description': 'Lorem Ipsum2',
-                              'category': 'Instrumentals3',
-                              'songs': 'lofi4',
+                              'mainName': 'Trappin',
+                              'description': 'Lorem Ipsum',
+                              'category': 'Instrumentals',
+                              'songs': 'lofi',
                             };
                             setState(() {
                             });
@@ -116,10 +116,10 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                           onTap: () {
                             specificPlaylistInfo = {
                               'id': '3',
-                              'mainName': 'Lo-Fi1',
-                              'description': 'Lorem Ipsum2',
-                              'category': 'Instrumentals3',
-                              'songs': 'lofi4',
+                              'mainName': 'Trappin',
+                              'description': 'Lorem Ipsum',
+                              'category': 'Instrumentals',
+                              'songs': 'lofi',
                             };
                             setState(() {
                             });
@@ -165,10 +165,10 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                           onTap: () {
                             specificPlaylistInfo = {
                               'id': '4',
-                              'mainName': 'Lo-Fi1',
-                              'description': 'Lorem Ipsum2',
-                              'category': 'Instrumentals3',
-                              'songs': 'lofi4',
+                              'mainName': 'Tropical',
+                              'description': 'Lorem Ipsum',
+                              'category': 'Nature',
+                              'songs': 'tropical',
                             };
                             setState(() {
                             });
@@ -184,10 +184,10 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                           onTap: () {
                             specificPlaylistInfo = {
                               'id': '5',
-                              'mainName': 'Lo-Fi1',
-                              'description': 'Lorem Ipsum2',
-                              'category': 'Instrumentals3',
-                              'songs': 'lofi4',
+                              'mainName': 'Tropical',
+                              'description': 'Lorem Ipsum',
+                              'category': 'Nature',
+                              'songs': 'tropical',
                             };
                             setState(() {
                             });
@@ -203,10 +203,10 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                           onTap: () {
                             specificPlaylistInfo = {
                               'id': '6',
-                              'mainName': 'Lo-Fi1',
-                              'description': 'Lorem Ipsum2',
-                              'category': 'Instrumentals3',
-                              'songs': 'lofi4',
+                              'mainName': 'Tropical',
+                              'description': 'Lorem Ipsum',
+                              'category': 'Nature',
+                              'songs': 'tropical',
                             };
                             setState(() {
                             });
@@ -222,10 +222,10 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                           onTap: () {
                             specificPlaylistInfo = {
                               'id': '7',
-                              'mainName': 'Lo-Fi1',
-                              'description': 'Lorem Ipsum2',
-                              'category': 'Instrumentals3',
-                              'songs': 'lofi4',
+                              'mainName': 'Tropical',
+                              'description': 'Lorem Ipsum',
+                              'category': 'Nature',
+                              'songs': 'tropical',
                             };
                             setState(() {
                             });
