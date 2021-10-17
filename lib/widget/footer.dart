@@ -3,27 +3,13 @@ import 'package:flutter_1/page/home_page.dart';
 import 'package:flutter_1/page/profile_page.dart';
 import 'package:flutter_1/page/playlists_page.dart';
 import 'package:flutter_1/page/community_page.dart';
-// import 'package:flutter_1/page/user_statistics.dart';
-
-// class BottomNavigationBarWidget extends StatelessWidget {
-//   const BottomNavigationBarWidget();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return BottomNavigationBar(items: <BottomNavigationBarItem>[
-//       BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-//       BottomNavigationBarItem(icon: Icon(Icons.library_music_outlined), label: 'Playlists'),
-//       BottomNavigationBarItem(icon: Icon(Icons.supervised_user_circle_outlined), label: 'Community'),
-//       BottomNavigationBarItem(icon: Icon(Icons.account_circle_outlined), label: 'Profile'),
-//     ]);
-//   }
-// }
+import 'package:flutter_1/page/user_statistics.dart';
 
 class Footer extends StatelessWidget {
   final String? page;
 
-  final indexArray = ["Home", "Playlists", "Community", "Profile"];
-  final redirectArray = [HomePage(), PlaylistsPage(), CommunityPage(), MyProfilePage()];
+  final indexArray = ["home", "playlists", "community", "statistics", "profile"];
+  final redirectArray = [HomePage(), PlaylistsPage(), CommunityPage(), UserStatisticsPage(), ProfilePage()];
   Footer({this.page});
 
   @override
@@ -48,6 +34,10 @@ class Footer extends StatelessWidget {
         new BottomNavigationBarItem(
           icon: Icon(Icons.supervised_user_circle_outlined),
           label: 'Community',
+        ),
+        new BottomNavigationBarItem(
+          icon: Icon(Icons.insert_chart_outlined_outlined),
+          label: 'Stats',
         ),
         new BottomNavigationBarItem(
           icon: Icon(Icons.account_circle_outlined),

@@ -29,6 +29,8 @@ dependencies:
   syncfusion_flutter_charts: ^19.3.43
   shared_preferences: ^2.0.8
   easy_dynamic_theme: ^2.2.0
+  flutter_settings_screens:
+    git: git@github.com:kodoshi/flutter_settings_screens.git
 
 dev_dependencies:
   flutter_test:

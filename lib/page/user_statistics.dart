@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_1/widget/stats/cartesian_chart.dart';
+import 'package:flutter_1/widget/footer.dart';
 
 class UserStatisticsPage extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _UserStatisticsPageState extends State<UserStatisticsPage> {
       child: Scaffold(
         appBar: AppBar(
           leading: BackButton(),
-          title: Text('VaporWare Profile'),
+          title: Text('Statistics'),
           centerTitle: true,
           backgroundColor: Colors.deepPurple,
         ),
@@ -22,6 +23,7 @@ class _UserStatisticsPageState extends State<UserStatisticsPage> {
           child: CartesianChartWidget(),
         ),
         backgroundColor: Color.fromRGBO(20, 25, 39, 1),
+        bottomNavigationBar: new Footer(page: "statistics")
       ),
     );
   }

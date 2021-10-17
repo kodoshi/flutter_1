@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_1/widget/footer.dart';
 import 'package:flutter_1/widget/music/music_tile.dart';
 
-class MyCommunityPage extends StatefulWidget {
+class CommunityPage extends StatefulWidget {
   @override
-  _MyCommunityPageState createState() => _MyCommunityPageState();
+  _CommunityPageState createState() => _CommunityPageState();
 }
 
-class _MyCommunityPageState extends State<MyCommunityPage> {
+class _CommunityPageState extends State<CommunityPage> {
   var size, height, width;
 
   @override
@@ -17,11 +18,11 @@ class _MyCommunityPageState extends State<MyCommunityPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Center(
-            child: Text('Vaporware'),
-          ),
-          backgroundColor: Colors.deepPurple,
-        ),
+        leading: BackButton(),
+        title: Text('Community'),
+        centerTitle: true,
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
         body: ListView(
           children: <Widget>[
             Container(
@@ -204,6 +205,7 @@ class _MyCommunityPageState extends State<MyCommunityPage> {
                     ))),
           ],
         ),
-        backgroundColor: Color.fromRGBO(20, 25, 39, 1));
+        backgroundColor: Color.fromRGBO(20, 25, 39, 1),
+        bottomNavigationBar: new Footer(page: "community"));
   }
 }
