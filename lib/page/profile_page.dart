@@ -132,6 +132,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  /// custom widget to build the settings tile responsible for Language Switch
   Widget buildLanguage() => DropDownSettingsTile(
         tileColor: Theme.of(context).backgroundColor,
         leading: IconWidget(
@@ -150,6 +151,7 @@ class _ProfilePageState extends State<ProfilePage> {
         },
       );
 
+/// custom widget to build the settings tile responsible for Dark Theme Switch
   Widget buildDarkMode() => SwitchSettingsTile(
         tileColor: Theme.of(context).backgroundColor,
         settingKey: 'key-dark-mode',
@@ -162,6 +164,7 @@ class _ProfilePageState extends State<ProfilePage> {
         },
       );
 
+/// async function taking care of image upload through camera
   Future pickImageFromCamera({
     required BuildContext context,
   }) async {
