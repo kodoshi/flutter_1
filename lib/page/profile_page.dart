@@ -64,7 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     pickImageFromCamera(context: context);
                   },
                   child: Container(
-                    height: 130,
+                    //height: 130,
                     width: 150,
                     decoration: BoxDecoration(
                         color: Theme.of(context).cardColor,
@@ -78,10 +78,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                 size: 80,
                                 color: Color.fromRGBO(142, 142, 147, 1),
                               )
-                            : SizedBox(
+                            : Container(
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: Image.file(photoTaken!).image)),
                                 height: 100,
                                 width: 100,
-                                child: Image.file(photoTaken!)),
+                              ),
                         Align(
                           alignment: FractionalOffset.bottomCenter,
                           child: Text(
