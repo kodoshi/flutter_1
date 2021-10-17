@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// custom icon builder used in the ProfilePage
 class IconWidget extends StatelessWidget {
   final IconData? icon;
   final Color? color;

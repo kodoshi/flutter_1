@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 import 'package:flutter_1/widget/footer.dart';
 import 'package:flutter_1/page/specific_playlist_page.dart';
-import 'package:flutter_1/widget/music/music_tile.dart';
 
+/// this page is responsible for showing categories and specific playlists that can be chosen by the user
+/// when these playlists are clicked or tapped, this page will redirect to SpecificPlaylistPage
+/// some of these categories are repeated or placeholders for the moment
+/// in the future most of the palceholder info will be gathered from the backend, dynamically
 class PlaylistsPage extends StatefulWidget {
   @override
   _PlaylistsPageState createState() => _PlaylistsPageState();

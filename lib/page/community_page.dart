@@ -4,6 +4,8 @@ import 'package:flutter_1/widget/music/music_tile.dart';
 import 'package:flutter_1/widget/music/minimal_music_tile.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 
+/// this page contains the most liked and played playlists from the user community
+/// at the moment has mostly placeholders since this info is needed from the backend
 class CommunityPage extends StatefulWidget {
   @override
   _CommunityPageState createState() => _CommunityPageState();

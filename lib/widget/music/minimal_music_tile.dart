@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 
+/// class which allows to build easy placeholders
 class MinimalMusicTile extends StatefulWidget {
   final String imageName;
   final String metaTitle;

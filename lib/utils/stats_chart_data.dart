@@ -1,3 +1,4 @@
+/// class used in UserStatistics page
 class StatsChartData {
   StatsChartData(
       dynamic dayName,

@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 
+/// class used by the UserStatistics page, holds the graph data and does the graph rendering
 class CartesianChartWidget extends StatefulWidget {
   @override
   _CartesianChartWidgetState createState() => _CartesianChartWidgetState();

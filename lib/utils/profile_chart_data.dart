@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+/// class used in UserStatistics page
 class ProfileChartData {
   ProfileChartData(this.x, this.y, this.color);
 

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_1/utils/profile_chart_data.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+///unused custom circular graph which wraps around the profile picture of the user
 class ProfilePictureWidget extends StatelessWidget {
   ProfilePictureWidget() : super();
 

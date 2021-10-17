@@ -4,15 +4,14 @@ import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:flutter_1/widget/music/music_tile.dart';
 import 'package:flutter_1/widget/music/minimal_music_tile.dart';
 import 'package:eventify/eventify.dart';
-import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
-import 'package:flutter_1/main.dart';
-import 'package:flutter/material.dart';
 
-final EventEmitter emitter = new EventEmitter();
+/// Package used to make events bubble up to the top of the tree, and trigger certain state rebuilds 
+final EventEmitter emitter = new EventEmitter(); //one instance to connect all events
 
-int translation = Settings.getValue<int>('key-language', 1);
-List<MusicTile> globalTiles = [];
+int translation = Settings.getValue<int>('key-language', 1); //persisting key to remember language preference
+List<MusicTile> globalTiles = []; //this array will hold the tiles displayed in HomePage
 
+/// getter function to retrieve the translated phrase
 String? getText(String element) {
   if (translation == 1) {
     return EnglishTranslation().translationArray[element];
@@ -23,6 +22,7 @@ String? getText(String element) {
   }
 }
 
+/// default Map object that sets the visual model used in SpecificPlaylistScreen
 Map<String, String> specificPlaylistInfo = {
   'id': '0',
   'mainName': 'Lo-Fi',
@@ -31,6 +31,7 @@ Map<String, String> specificPlaylistInfo = {
   'songs': 'lofi',
 };
 
+/// array that holds the true MusicTiles, will be referenced by placeholderTiles which in itself lacks an audio player
 List<MusicTile> specificTiles = [
   MusicTile(
     globalTileID: 0,
@@ -98,6 +99,7 @@ List<MusicTile> specificTiles = [
   ),
 ];
 
+/// array that holds the fake MusicTiles, used to reference placeholderTiles, this is done to minimize unnecessary initialization
 List<MinimalMusicTile> placeholderTiles = [
   MinimalMusicTile(
     imageName: 'assets/images/street-japan-night.jpg',

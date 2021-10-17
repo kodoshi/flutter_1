@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_1/widget/footer.dart';
 import 'package:flutter_1/widget/icon/icon_widget.dart';
@@ -8,6 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 
+/// this page is responsible for showing the personal details of the user,
+/// as well as offering some graphical settings, like language switch or dark theme switch
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();

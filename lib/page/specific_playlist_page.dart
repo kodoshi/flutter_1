@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 import 'package:flutter_1/widget/footer.dart';
 
+/// this page is used to display details about a specific playlist that was selected in Playlists page,
+/// and has a button which adds the specific playlist chosen to the Home screen
 class SpecificPlaylistPage extends StatefulWidget {
   //final String mainName;
   //final String description;
@@ -69,7 +71,9 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
                     print("we here");
                     print(int.parse(specificPlaylistInfo['id']!));
                     globalTiles.add(
-                        specificTiles[int.parse(specificPlaylistInfo['id']!)]); //global magic
+                        specificTiles[int.parse(specificPlaylistInfo['id']!)]); 
+                        // specificPlaylistInfo instance is updated in Playlists screen, right before this page is loaded,
+                        // Through that instance we can track which Tile is needed to be added to the Home screen through globalTiles
                   },
                   child: Text(getText('addHome').toString()),
                   style: ButtonStyle(

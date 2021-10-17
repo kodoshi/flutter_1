@@ -7,6 +7,8 @@ import 'package:flutter_1/page/user_statistics.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 import 'package:flutter_1/page/specific_playlist_page.dart';
 
+/// a bottom navigation bar which is responsible for redirects inside the app
+/// its used in most pages, to simplify visual navigation
 class Footer extends StatelessWidget {
   final String? page;
 

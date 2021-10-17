@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 
+/// the workhorse of the app, this class holds a new instance of an active playlist, 
+/// the details of which are required when this widget gets initialized, 
+/// the instance is responsible for the visual look of the Tile, 
+/// for managing its audio player, and for disposing itself if needed
 class MusicTile extends StatefulWidget {
   final int globalTileID;
   final String trackName;

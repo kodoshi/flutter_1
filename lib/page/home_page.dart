@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_1/widget/footer.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 
+/// this page will contain all the active playlists and audio players,
+/// that are added by PlaylistsPage and SpecificPlaylistPage
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
