@@ -13,18 +13,17 @@ class _UserStatisticsPageState extends State<UserStatisticsPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          leading: BackButton(),
-          title: Text('Statistics'),
-          centerTitle: true,
-          backgroundColor: Colors.deepPurple,
-        ),
-        body: SafeArea(
-          child: CartesianChartWidget(),
-        ),
-        backgroundColor: Color.fromRGBO(20, 25, 39, 1),
-        bottomNavigationBar: new Footer(page: "statistics")
-      ),
+          appBar: AppBar(
+            leading: BackButton(),
+            title: Text('Statistics'),
+            centerTitle: true,
+            backgroundColor: Theme.of(context).primaryColor,
+          ),
+          body: SafeArea(
+            child: CartesianChartWidget(),
+          ),
+          backgroundColor: Theme.of(context).backgroundColor,
+          bottomNavigationBar: new Footer(page: "statistics")),
     );
   }
 }

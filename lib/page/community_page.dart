@@ -18,11 +18,11 @@ class _CommunityPageState extends State<CommunityPage> {
 
     return Scaffold(
         appBar: AppBar(
-        leading: BackButton(),
-        title: Text('Community'),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
+          leading: BackButton(),
+          title: Text('Community'),
+          centerTitle: true,
+          backgroundColor: Theme.of(context).primaryColor,
+        ),
         body: ListView(
           children: <Widget>[
             Container(
@@ -30,7 +30,8 @@ class _CommunityPageState extends State<CommunityPage> {
                 width: width,
                 height: 100,
                 child: Text('Community',
-                    style: TextStyle(fontSize: 30, color: Colors.white))),
+                    style: TextStyle(
+                        fontSize: 30, color: Theme.of(context).accentColor))),
             Container(
                 child: Align(
               alignment: Alignment.topLeft,
@@ -48,7 +49,7 @@ class _CommunityPageState extends State<CommunityPage> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          (Colors.blueGrey[900])!),
+                                          (Theme.of(context).cardColor)),
                                   shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
@@ -62,7 +63,7 @@ class _CommunityPageState extends State<CommunityPage> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          (Colors.blueGrey[900])!),
+                                          Theme.of(context).cardColor),
                                   shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
@@ -76,7 +77,7 @@ class _CommunityPageState extends State<CommunityPage> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          (Colors.blueGrey[900])!),
+                                          Theme.of(context).cardColor),
                                   shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
@@ -90,7 +91,7 @@ class _CommunityPageState extends State<CommunityPage> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          (Colors.blueGrey[900])!),
+                                          Theme.of(context).cardColor),
                                   shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
@@ -205,7 +206,7 @@ class _CommunityPageState extends State<CommunityPage> {
                     ))),
           ],
         ),
-        backgroundColor: Color.fromRGBO(20, 25, 39, 1),
+        backgroundColor: Theme.of(context).backgroundColor,
         bottomNavigationBar: new Footer(page: "community"));
   }
 }
