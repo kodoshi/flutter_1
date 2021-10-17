@@ -32,7 +32,7 @@ class _CommunityPageState extends State<CommunityPage> {
                 width: width,
                 height: 100,
                 child: Text(getText('communityFavorites').toString(),
-                    style: TextStyle(fontSize: 30, color: Colors.white))),
+                    style: TextStyle(fontSize: 30))),
             Container(
                 child: Align(
               alignment: Alignment.topLeft,
