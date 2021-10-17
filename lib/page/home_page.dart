@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_1/widget/music/music_tile.dart';
 import 'package:flutter_1/widget/footer.dart';
+import 'package:flutter_1/utils/globalVars.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,48 +14,47 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
   }
+  void addTileToList() {
+    setState(() {
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    emitter.on('updateTileList', this, (event, context) {
+      addTileToList();
+    });
     return Scaffold(
         appBar: AppBar(
           title: Text('VaporWare'),
           centerTitle: true,
-          backgroundColor: Colors.deepPurple,
+          backgroundColor: Theme.of(context).primaryColor,
         ),
         body: SafeArea(
-          child: GridView.count(
-            //primary: false,
-            padding: const EdgeInsets.all(25),
-            crossAxisSpacing: 12.5,
-            mainAxisSpacing: 12.5,
-            crossAxisCount: 2,
-            children: <Widget>[
-              MusicTile(
-                trackName: 'assets/sounds/lofi.mp3',
-                imageName: 'assets/images/street-japan-night.jpg',
-                metaTitle: 'Lo-Fi',
-                metaArtist: 'Various Artists',
-                metaAlbum: 'Instrumentals',
-              ),
-              MusicTile(
-                trackName: 'assets/sounds/lofi.mp3',
-                imageName: 'assets/images/street-japan-night.jpg',
-                metaTitle: 'Lo-Fi',
-                metaArtist: 'Various Artists',
-                metaAlbum: 'Instrumentals',
-              ),
-              MusicTile(
-                trackName: 'assets/sounds/lofi.mp3',
-                imageName: 'assets/images/street-japan-night.jpg',
-                metaTitle: 'Lo-Fi',
-                metaArtist: 'Various Artists',
-                metaAlbum: 'Instrumentals',
-              ),
-            ],
-          ),
+          child: (globalTiles.length == 0)
+              ? Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    getText('lonelyText').toString(),
+                    style: TextStyle(fontSize: 20,),
+                    textAlign: TextAlign.center,
+                  ))
+              : GridView.builder(
+                  padding: const EdgeInsets.all(25),
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 250,
+                      childAspectRatio: 1,
+                      crossAxisSpacing: 25,
+                      mainAxisSpacing: 25),
+                  itemCount: globalTiles.length,
+                  itemBuilder: (BuildContext ctx, index) {
+                    return Container(
+                      alignment: Alignment.center,
+                      child: globalTiles[index],
+                    );
+                  }),
         ),
-        backgroundColor: Color.fromRGBO(20, 25, 39, 1),
+        backgroundColor: Theme.of(context).backgroundColor,
         bottomNavigationBar: new Footer(page: "home"));
   }
 }

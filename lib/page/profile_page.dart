@@ -6,7 +6,7 @@ import 'package:flutter_1/widget/icon/icon_widget.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
-import 'package:flutter_1/utils/getText.dart';
+import 'package:flutter_1/utils/globalVars.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -29,30 +29,6 @@ class _ProfilePageState extends State<ProfilePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Align(
-            //   alignment: Alignment.topRight,
-            //   child: GestureDetector(
-            //     onTap: () {
-            //       Navigator.push(
-            //         context,
-            //         MaterialPageRoute(builder: (context) => UserStatisticsPage()),
-            //       );
-            //     },
-            //     child: Container(
-            //       height: 70,
-            //       width: 70,
-            //       decoration: BoxDecoration(
-            //         borderRadius: BorderRadius.circular(17),
-            //         color: Theme.of(context).cardColor,
-            //       ),
-            //       child: Align(
-            //           child: Text(
-            //         'Statistics',
-            //         style: TextStyle(color: Colors.white),
-            //       )),
-            //     ),
-            //   ),
-            // ),
             SizedBox(
               height: 20,
             ),
@@ -64,7 +40,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     pickImageFromCamera(context: context);
                   },
                   child: Container(
-                    //height: 130,
                     width: 150,
                     decoration: BoxDecoration(
                         color: Theme.of(context).cardColor,
@@ -76,7 +51,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ? Icon(
                                 Icons.account_circle,
                                 size: 80,
-                                color: Color.fromRGBO(142, 142, 147, 1),
+                                color: Theme.of(context).canvasColor,
                               )
                             : Container(
                                 decoration: BoxDecoration(
@@ -87,13 +62,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                 height: 100,
                                 width: 100,
                               ),
-                        Align(
-                          alignment: FractionalOffset.bottomCenter,
-                          child: Text(
-                            getText('tapToAdd').toString(),
-                            style: TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                        ),
+                        // Align(
+                        //   alignment: FractionalOffset.bottomCenter,
+                        //   child: Text(
+                        //     getText('tapToAdd').toString(),
+                        //     style: TextStyle(color: Colors.white, fontSize: 16),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
@@ -145,36 +120,10 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             SizedBox(
-              height: 30,
+              height: 20,
             ),
             buildLanguage(),
             buildDarkMode(),
-            // GestureDetector(
-            //   onTap: () {
-            //     pickImageFromCamera(context: context);
-            //     //add function take Picture
-            //     print('jai pris la photo');
-            //   },
-            //   child: Container(
-            //     height: 120,
-            //     width: 180,
-            //     decoration: BoxDecoration(
-            //         color: Color.fromRGBO(33, 40, 63, 1),
-            //         borderRadius: BorderRadius.circular(17)),
-            //     child: Column(
-            //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //       children: [
-            //         Icon(
-            //           Icons.photo_camera,
-            //           color: Color.fromRGBO(142, 142, 147, 1),
-            //           size: 60,
-            //         ),
-            //         Text('Take a picture',
-            //             style: TextStyle(color: Colors.white, fontSize: 23)),
-            //       ],
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:flutter_1/utils/globalVars.dart';
 
 class MusicTile extends StatefulWidget {
+  final int globalTileID;
   final String trackName;
   final String imageName;
   final String metaTitle;
@@ -11,6 +13,7 @@ class MusicTile extends StatefulWidget {
 
   MusicTile({
     Key? key,
+    required this.globalTileID,
     required this.trackName,
     required this.imageName,
     required this.metaTitle,
@@ -89,8 +92,15 @@ class _MusicTileState extends State<MusicTile> {
               ),
             ),
           ),
+          Positioned(
+            bottom: 14,
+            left: 20,
+            child: Text(widget.metaTitle,
+                    style: TextStyle(fontSize: 15)),
+          ),
         ],
       ),
+      
     );
   }
 
@@ -108,7 +118,9 @@ class _MusicTileState extends State<MusicTile> {
 
   @override
   void dispose() {
+    globalTiles.removeWhere((item) => item.globalTileID == widget.globalTileID);
     audioPlayer.dispose();
     super.dispose();
+    emitter.emit("updateTileList", "musicTile", null);
   }
 }

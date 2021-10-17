@@ -25,24 +25,30 @@ class MyApp extends StatelessWidget {
       title: 'VaporWare',
       themeMode: EasyDynamicTheme.of(context).themeMode,
       theme: ThemeData(
-        backgroundColor: Color(0xFF121212),
-        primaryColor: Color(0xFF1F1F1F),
-        cardColor: Color(0xFF2D2D2D),
-        accentColor: Color(0xFF1DE9B6),
+        backgroundColor: Color.fromRGBO(245, 245, 220, 1),
+        primaryColor: Color.fromRGBO(200, 173, 127, 1),
+        cardColor: Color.fromRGBO(169, 146, 123, 1),
+        textSelectionColor: Colors.white,
+        accentColor: Color.fromRGBO(169, 146, 123, 1),
+        canvasColor: Color.fromRGBO(249, 228, 183, 1),
+        bottomAppBarColor: Color.fromRGBO(200, 173, 127, 1),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         brightness: Brightness.light,
       ),
       darkTheme: ThemeData(
-        backgroundColor: Color(0xFF332940),
-        primaryColor: Color(0xFF1F1B24),
-        cardColor: Color(0xFF7F7F7F),
-        accentColor: Color(0xFF1DE9B6),
+        backgroundColor: Color.fromRGBO(22, 35, 57, 1 /**/),
+        primaryColor: Color.fromRGBO(28, 46, 74, 1 /**/),
+        cardColor:
+            Colors.black26, //Color.fromRGBO(17, 34, 61, 1 /*35, 57, 93, 1*/),
+        textSelectionColor: Colors.grey,
+        accentColor: Colors.black38,
+        bottomAppBarColor: Color.fromRGBO(22, 35, 57, 1 /**/),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         brightness: Brightness.dark,
       ),
-      initialRoute: '/',
+      initialRoute: '/home',
       routes: {
-        '/': (context) => HomePage(),
+        '/home': (context) => HomePage(),
         '/statistics': (context) => UserStatisticsPage(),
         '/community': (context) => CommunityPage(),
         '/profile': (context) => ProfilePage(),
@@ -51,3 +57,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+//accentColor: Color(0xFF1DE9B6)

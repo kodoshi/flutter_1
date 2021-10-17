@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_1/utils/getText.dart';
+import 'package:flutter_1/utils/globalVars.dart';
 import 'package:flutter_1/widget/footer.dart';
 
 class SpecificPlaylistPage extends StatefulWidget {
-  final String mainName;
-  final String description;
-  final String category;
-  final String songs;
+  //final String mainName;
+  //final String description;
+  //final String category;
+  //final String songs;
 
   SpecificPlaylistPage({
     Key? key,
-    required this.mainName,
-    required this.category,
-    required this.description,
-    required this.songs,
+    //required this.mainName,
+    //required this.category,
+    //required this.description,
+    //required this.songs,
   }) : super(key: key);
 
   @override
@@ -34,7 +34,7 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         leading: BackButton(),
-        title: Text(getText('profile').toString()),
+        title: Text('Playlist'),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
       ),
@@ -46,7 +46,7 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
               child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    widget.mainName,
+                    specificPlaylistInfo['mainName']!,
                     style: TextStyle(fontSize: 28, color: Colors.white),
                     textAlign: TextAlign.center,
                   ))),
@@ -55,7 +55,7 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
               padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Align(
                   alignment: Alignment.center,
-                  child: Text(widget.category,
+                  child: Text(specificPlaylistInfo['category']!,
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 14)))),
           Container(
@@ -65,8 +65,13 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
           Container(
               margin: EdgeInsets.fromLTRB(80, 0, 80, 0),
               child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text("Add to Home"),
+                  onPressed: () {
+                    print("we here");
+                    print(int.parse(specificPlaylistInfo['id']!));
+                    globalTiles.add(
+                        specificTiles[int.parse(specificPlaylistInfo['id']!)]); //global magic
+                  },
+                  child: Text(getText('addHome').toString()),
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
                           (Colors.blueGrey[900])!),
@@ -84,13 +89,13 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
                     margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                     child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text("About this pack",
+                        child: Text(getText('aboutPack').toString(),
                             style: TextStyle(color: Colors.white)))),
                 Container(
                     margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
                     child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(widget.description,
+                        child: Text(specificPlaylistInfo['description']!,
                             style:
                                 TextStyle(color: Colors.white, height: 1.5)))),
                 Container(
@@ -109,11 +114,13 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
                             children: [
                               Container(
                                   margin: EdgeInsets.fromLTRB(10, 15, 0, 10),
-                                  child: Text("List of songs",
+                                  child: Text("Music",
                                       style: TextStyle(color: Colors.white))),
                               Container(
                                   margin: EdgeInsets.fromLTRB(10, 15, 0, 10),
-                                  child: Text("01     " + widget.songs,
+                                  child: Text(
+                                      "01     " +
+                                          specificPlaylistInfo['songs']!,
                                       style: TextStyle(color: Colors.white)))
                             ],
                           ))),
@@ -121,30 +128,7 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
               ]))
         ],
       ),
-      bottomNavigationBar: new Footer(page: "Playlist"),
+      bottomNavigationBar: new Footer(page: "playlists"),
     );
   }
 }
-
-// for (int i = 0; i < widget.songs.length; i++)
-//   Column(
-//     children: <Widget>[
-//       Align(
-//           alignment: Alignment.topLeft,
-//           child: Row(
-//             children: [
-//               Container(
-//                   margin: EdgeInsets.fromLTRB(
-//                       10, 0, 0, 10),
-//                   child: Text(
-//                       (i + 1)
-//                               .toString()
-//                               .padLeft(2, '0') +
-//                           "     " +
-//                           widget.songs[i],
-//                       style: TextStyle(
-//                           color: Colors.white))),
-//             ],
-//           ))
-//     ],
-//   )

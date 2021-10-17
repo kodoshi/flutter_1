@@ -1,6 +1,10 @@
 class FrenchTranslation {
   final translationArray = {
+    'stats': 'Stats',
+    'home': 'Home',
     'profile': 'Profil',
+    'aboutPack': 'About this playlist',
+    'addHome': 'Add to Home',
     'tapToAdd': 'Appuyez pour ajouter une image',
     'personalInformation': 'Informations personnelles',
     'firstName': 'Nom',
@@ -9,5 +13,19 @@ class FrenchTranslation {
     'email': 'E-mail',
     'language': 'Langue',
     'darkTheme': 'Thème sombre',
+    'playlists': 'Playlists',
+    'instrumental': 'Instrumental',
+    'instrumentalDescription': 'Musique relaxante et minimaliste',
+    'nature': 'Nature',
+    'natureDescription': 'Sons apaisants de la nature et de la forêt',
+    'community': 'Communauté',
+    'communityFavorites': 'Favoris de la communauté',
+    'monday': 'Lundi',
+    'tuesday': 'Mardi',
+    'wednesday': 'Mercredi',
+    'thursday': 'Jeudi',
+    'friday': 'Vendredi',
+    'listeningTime': 'Statistiques du temps d\'écoute (en heures)',
+    'lonelyText': 'On se sent seul ici, veuillez ajouter de la musique à partir de l\'écran Playlists.',
   };
 }

@@ -1,5 +1,9 @@
 class EnglishTranslation {
   final translationArray = {
+    'stats': 'Stats',
+    'home': 'Home',
+    'addHome': 'Add to Home',
+    'aboutPack': 'About this playlist',
     'profile': 'Profile',
     'tapToAdd': 'Tap to add picture',
     'personalInformation': 'Personal Information',
@@ -9,5 +13,19 @@ class EnglishTranslation {
     'email': 'Email',
     'language': 'Language',
     'darkTheme': 'Dark Theme',
+    'playlists': 'Playlists',
+    'instrumental': 'Instrumental',
+    'instrumentalDescription': 'Relaxing, minimalistic music',
+    'nature': 'Nature',
+    'natureDescription': 'Calming nature and forest sounds',
+    'community': 'Community',
+    'communityFavorites': 'Community Favorites',
+    'monday': 'Monday',
+    'tuesday': 'Tuesday',
+    'wednesday': 'Wednesday',
+    'thursday': 'Thursday',
+    'friday': 'Friday',
+    'listeningTime' : 'Listening time stats (in hours)',
+    'lonelyText': 'It feels lonely here, please add music from the Playlists screen.',
   };
 }

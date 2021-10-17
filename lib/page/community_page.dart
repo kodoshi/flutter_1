@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_1/widget/footer.dart';
 import 'package:flutter_1/widget/music/music_tile.dart';
+import 'package:flutter_1/widget/music/minimal_music_tile.dart';
+import 'package:flutter_1/utils/globalVars.dart';
 
 class CommunityPage extends StatefulWidget {
   @override
@@ -18,18 +20,18 @@ class _CommunityPageState extends State<CommunityPage> {
 
     return Scaffold(
         appBar: AppBar(
-        leading: BackButton(),
-        title: Text('Community'),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
+          leading: BackButton(),
+          title: Text(getText('community').toString()),
+          centerTitle: true,
+          backgroundColor: Theme.of(context).primaryColor,
+        ),
         body: ListView(
           children: <Widget>[
             Container(
                 padding: EdgeInsets.fromLTRB(width / 16, height / 16, 0, 0),
                 width: width,
                 height: 100,
-                child: Text('Community',
+                child: Text(getText('communityFavorites').toString(),
                     style: TextStyle(fontSize: 30, color: Colors.white))),
             Container(
                 child: Align(
@@ -48,7 +50,7 @@ class _CommunityPageState extends State<CommunityPage> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          (Colors.blueGrey[900])!),
+                                          (Theme.of(context).cardColor)),
                                   shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
@@ -62,7 +64,7 @@ class _CommunityPageState extends State<CommunityPage> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          (Colors.blueGrey[900])!),
+                                          (Theme.of(context).cardColor)),
                                   shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
@@ -76,7 +78,7 @@ class _CommunityPageState extends State<CommunityPage> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          (Colors.blueGrey[900])!),
+                                          (Theme.of(context).cardColor)),
                                   shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
@@ -90,7 +92,7 @@ class _CommunityPageState extends State<CommunityPage> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          (Colors.blueGrey[900])!),
+                                          (Theme.of(context).cardColor)),
                                   shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
@@ -99,14 +101,6 @@ class _CommunityPageState extends State<CommunityPage> {
                     ],
                   )),
             )),
-            // Container(
-            //     child: GridView.count(
-            //   primary: false,
-            //   crossAxisCount: 2,
-            //   crossAxisSpacing: 10,
-            //   scrollDirection: ,
-            //   children: [],
-            // ))
             Container(
                 child: SizedBox(
                     height: 200,
@@ -118,94 +112,27 @@ class _CommunityPageState extends State<CommunityPage> {
                       mainAxisSpacing: 12.5,
                       crossAxisCount: 1,
                       children: <Widget>[
-                        MusicTile(
-                          trackName: 'assets/sounds/tropical.mp3',
+                        MinimalMusicTile(
                           imageName: 'assets/images/street-japan-night.jpg',
                           metaTitle: 'Lo-Fi',
-                          metaArtist: 'Various Artists',
-                          metaAlbum: 'Instrumentals',
                         ),
-                        MusicTile(
-                          trackName: 'assets/sounds/tropical.mp3',
+                        MinimalMusicTile(
                           imageName: 'assets/images/street-japan-night.jpg',
                           metaTitle: 'Lo-Fi',
-                          metaArtist: 'Various Artists',
-                          metaAlbum: 'Instrumentals',
                         ),
-                        MusicTile(
-                          trackName: 'assets/sounds/tropical.mp3',
+                        MinimalMusicTile(
                           imageName: 'assets/images/street-japan-night.jpg',
                           metaTitle: 'Lo-Fi',
-                          metaArtist: 'Various Artists',
-                          metaAlbum: 'Instrumentals',
                         ),
-                        MusicTile(
-                          trackName: 'assets/sounds/tropical.mp3',
+                        MinimalMusicTile(
                           imageName: 'assets/images/street-japan-night.jpg',
                           metaTitle: 'Lo-Fi',
-                          metaArtist: 'Various Artists',
-                          metaAlbum: 'Instrumentals',
                         ),
-                        MusicTile(
-                          trackName: 'assets/sounds/tropical.mp3',
-                          imageName: 'assets/images/street-japan-night.jpg',
-                          metaTitle: 'Lo-Fi',
-                          metaArtist: 'Various Artists',
-                          metaAlbum: 'Instrumentals',
-                        )
-                      ],
-                    ))),
-            Container(
-                child: SizedBox(
-                    height: 200,
-                    child: GridView.count(
-                      //primary: false,
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.all(25),
-                      crossAxisSpacing: 12.5,
-                      mainAxisSpacing: 12.5,
-                      crossAxisCount: 1,
-                      children: <Widget>[
-                        MusicTile(
-                          trackName: 'assets/sounds/tropical.mp3',
-                          imageName: 'assets/images/street-japan-night.jpg',
-                          metaTitle: 'Lo-Fi',
-                          metaArtist: 'Various Artists',
-                          metaAlbum: 'Instrumentals',
-                        ),
-                        MusicTile(
-                          trackName: 'assets/sounds/tropical.mp3',
-                          imageName: 'assets/images/street-japan-night.jpg',
-                          metaTitle: 'Lo-Fi',
-                          metaArtist: 'Various Artists',
-                          metaAlbum: 'Instrumentals',
-                        ),
-                        MusicTile(
-                          trackName: 'assets/sounds/tropical.mp3',
-                          imageName: 'assets/images/street-japan-night.jpg',
-                          metaTitle: 'Lo-Fi',
-                          metaArtist: 'Various Artists',
-                          metaAlbum: 'Instrumentals',
-                        ),
-                        MusicTile(
-                          trackName: 'assets/sounds/tropical.mp3',
-                          imageName: 'assets/images/street-japan-night.jpg',
-                          metaTitle: 'Lo-Fi',
-                          metaArtist: 'Various Artists',
-                          metaAlbum: 'Instrumentals',
-                        ),
-                        MusicTile(
-                          trackName: 'assets/sounds/tropical.mp3',
-                          imageName: 'assets/images/street-japan-night.jpg',
-                          metaTitle: 'Lo-Fi',
-                          metaArtist: 'Various Artists',
-                          metaAlbum: 'Instrumentals',
-                        )
                       ],
                     ))),
           ],
         ),
-        backgroundColor: Color.fromRGBO(20, 25, 39, 1),
+        backgroundColor: Theme.of(context).backgroundColor,
         bottomNavigationBar: new Footer(page: "community"));
   }
 }

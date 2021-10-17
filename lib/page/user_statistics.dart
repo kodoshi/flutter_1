@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_1/widget/stats/cartesian_chart.dart';
 import 'package:flutter_1/widget/footer.dart';
+import 'package:flutter_1/utils/globalVars.dart';
 
 class UserStatisticsPage extends StatefulWidget {
   @override
@@ -15,14 +16,14 @@ class _UserStatisticsPageState extends State<UserStatisticsPage> {
       child: Scaffold(
         appBar: AppBar(
           leading: BackButton(),
-          title: Text('Statistics'),
+          title: Text(getText('statistics').toString()),
           centerTitle: true,
-          backgroundColor: Colors.deepPurple,
+          backgroundColor: Theme.of(context).primaryColor,
         ),
         body: SafeArea(
           child: CartesianChartWidget(),
         ),
-        backgroundColor: Color.fromRGBO(20, 25, 39, 1),
+        backgroundColor: Theme.of(context).backgroundColor,
         bottomNavigationBar: new Footer(page: "statistics")
       ),
     );

@@ -2,6 +2,7 @@ import 'package:flutter_1/utils/stats_chart_data.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_1/utils/globalVars.dart';
 
 class CartesianChartWidget extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _CartesianChartWidgetState extends State<CartesianChartWidget> {
     setState(() {
       chartData = <StatsChartData>[
         StatsChartData(
-          "Monday",
+          getText('monday').toString(),
           prefs.getInt('monday_play_time') ?? 7839,
           45,
           20,
@@ -29,7 +30,7 @@ class _CartesianChartWidgetState extends State<CartesianChartWidget> {
           20,
         ),
         StatsChartData(
-          "Tuesday",
+          getText('tuesday').toString(),
           prefs.getInt('tuesday_play_time') ?? 9000,
           35,
           15,
@@ -37,7 +38,7 @@ class _CartesianChartWidgetState extends State<CartesianChartWidget> {
           30,
         ),
         StatsChartData(
-          "Wednesday",
+          getText('wednesday').toString(),
           prefs.getInt('wednesday_play_time') ?? 4500,
           15,
           25,
@@ -45,7 +46,7 @@ class _CartesianChartWidgetState extends State<CartesianChartWidget> {
           40,
         ),
         StatsChartData(
-          "Thursday",
+          getText('thursday').toString(),
           prefs.getInt('thursday_play_time') ?? 6452,
           05,
           45,
@@ -53,7 +54,7 @@ class _CartesianChartWidgetState extends State<CartesianChartWidget> {
           35,
         ),
         StatsChartData(
-          "Friday",
+          getText('friday').toString(),
           prefs.getInt('friday_play_time') ?? 4201,
           35,
           25,
@@ -70,8 +71,8 @@ class _CartesianChartWidgetState extends State<CartesianChartWidget> {
       plotAreaBorderWidth: 0,
       enableSideBySideSeriesPlacement: false,
       title: ChartTitle(
-          textStyle: TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
-          text: 'Listening time stats (in  hours)'),
+          //textStyle: TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
+          text: getText('listeningTime').toString()),
       primaryXAxis: CategoryAxis(
         majorGridLines: const MajorGridLines(width: 0),
       ),
@@ -84,7 +85,7 @@ class _CartesianChartWidgetState extends State<CartesianChartWidget> {
         isVisible: true,
         overflowMode: LegendItemOverflowMode.wrap,
         position: LegendPosition.bottom,
-        textStyle: TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
+        //textStyle: TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
         toggleSeriesVisibility: false,
       ),
       series: <ColumnSeries<StatsChartData, String>>[
