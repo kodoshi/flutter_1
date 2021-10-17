@@ -16,7 +16,7 @@ class _UserStatisticsPageState extends State<UserStatisticsPage> {
       child: Scaffold(
         appBar: AppBar(
           leading: BackButton(),
-          title: Text(getText('statistics').toString()),
+          title: Text('Statistics'),
           centerTitle: true,
           backgroundColor: Theme.of(context).primaryColor,
         ),
