@@ -31,7 +31,9 @@ class _MusicTileState extends State<MusicTile> {
 
   @override
   void initState() {
-    super.initState();
+    super.initState(
+    );
+    print('TRACK NAME IN TILE: ' + widget.trackName);
     audioPlayer.open(
         Audio(widget.trackName,
             metas: Metas(

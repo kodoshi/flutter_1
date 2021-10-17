@@ -47,7 +47,7 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
                   alignment: Alignment.center,
                   child: Text(
                     specificPlaylistInfo['mainName']!,
-                    style: TextStyle(fontSize: 28, color: Colors.white),
+                    style: TextStyle(fontSize: 28),
                     textAlign: TextAlign.center,
                   ))),
           Container(
@@ -57,7 +57,7 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
                   alignment: Alignment.center,
                   child: Text(specificPlaylistInfo['category']!,
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 14)))),
+                      style: TextStyle(fontSize: 14)))),
           Container(
               padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
               margin: EdgeInsets.fromLTRB(0, 20, 0, 15),
@@ -74,7 +74,7 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
                   child: Text(getText('addHome').toString()),
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                          (Colors.blueGrey[900])!),
+                          (Theme.of(context).cardColor)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0)))))),
@@ -90,21 +90,23 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
                     child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(getText('aboutPack').toString(),
-                            style: TextStyle(color: Colors.white)))),
+                            //style: TextStyle(color: Colors.white),
+                            ))),
                 Container(
                     margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
                     child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(specificPlaylistInfo['description']!,
-                            style:
-                                TextStyle(color: Colors.white, height: 1.5)))),
+                            // style:
+                            //     TextStyle(color: Colors.white, height: 1.5),
+                                ))),
                 Container(
                   height: 200.0,
                   width: width,
                   color: Colors.transparent,
                   child: Container(
                       decoration: BoxDecoration(
-                          color: Color.fromRGBO(47, 59, 90, 1),
+                          color: Theme.of(context).cardColor,
                           borderRadius:
                               BorderRadius.all(Radius.circular(10.0))),
                       child: SizedBox(
