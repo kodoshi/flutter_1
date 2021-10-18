@@ -2,6 +2,7 @@ class EnglishTranslation {
   final translationArray = {
     'stats': 'Stats',
     'home': 'Home',
+    'statistics': 'Statistics',
     'addHome': 'Add to Home',
     'aboutPack': 'About this playlist',
     'profile': 'Profile',
@@ -14,6 +15,7 @@ class EnglishTranslation {
     'language': 'Language',
     'darkTheme': 'Dark Theme',
     'playlists': 'Playlists',
+    'playlist': 'Playlist',
     'instrumental': 'Instrumental',
     'instrumentalDescription': 'Relaxing, minimalistic music',
     'nature': 'Nature',

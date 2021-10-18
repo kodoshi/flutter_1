@@ -46,7 +46,7 @@ class _MinimalMusicTileState extends State<MinimalMusicTile> {
             bottom: 14,
             left: 20,
             child: Text(widget.metaTitle,
-                    style: TextStyle(fontSize: 15)),
+                    style: TextStyle(fontSize: 15, color: Colors.white)),
           ),
         ],
       ),

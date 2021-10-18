@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_1/utils/globalVars.dart';
 import 'package:flutter_1/widget/stats/cartesian_chart.dart';
 import 'package:flutter_1/widget/footer.dart';
 
@@ -16,7 +17,7 @@ class _UserStatisticsPageState extends State<UserStatisticsPage> {
       child: Scaffold(
         appBar: AppBar(
           leading: BackButton(),
-          title: Text('Statistics'),
+          title: Text(getText('statistics').toString()),
           centerTitle: true,
           backgroundColor: Theme.of(context).primaryColor,
         ),

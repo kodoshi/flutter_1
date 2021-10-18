@@ -41,6 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     pickImageFromCamera(context: context);
                   },
                   child: Container(
+                    height: 140,
                     width: 150,
                     decoration: BoxDecoration(
                         color: Theme.of(context).cardColor,
@@ -63,13 +64,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                 height: 100,
                                 width: 100,
                               ),
-                        // Align(
-                        //   alignment: FractionalOffset.bottomCenter,
-                        //   child: Text(
-                        //     getText('tapToAdd').toString(),
-                        //     style: TextStyle(color: Colors.white, fontSize: 16),
-                        //   ),
-                        // ),
+                        Align(
+                          alignment: FractionalOffset.bottomCenter,
+                          child: Text(
+                            getText('tapToAdd').toString(),
+                            style: TextStyle(color: Colors.white, fontSize: 14),
+                          ),
+                        ),
                       ],
                     ),
                   ),

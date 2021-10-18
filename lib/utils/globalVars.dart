@@ -5,11 +5,14 @@ import 'package:flutter_1/widget/music/music_tile.dart';
 import 'package:flutter_1/widget/music/minimal_music_tile.dart';
 import 'package:eventify/eventify.dart';
 
-/// Package used to make events bubble up to the top of the tree, and trigger certain state rebuilds 
-final EventEmitter emitter = new EventEmitter(); //one instance to connect all events
+/// Package used to make events bubble up to the top of the tree, and trigger certain state rebuilds
+final EventEmitter emitter =
+    new EventEmitter(); //one instance to connect all events
 
-int translation = Settings.getValue<int>('key-language', 1); //persisting key to remember language preference
-List<MusicTile> globalTiles = []; //this array will hold the tiles displayed in HomePage
+int translation = Settings.getValue<int>(
+    'key-language', 1); //persisting key to remember language preference
+List<MusicTile> globalTiles =
+    []; //this array will hold the tiles displayed in HomePage
 
 /// getter function to retrieve the translated phrase
 String? getText(String element) {
@@ -26,7 +29,7 @@ String? getText(String element) {
 Map<String, String> specificPlaylistInfo = {
   'id': '0',
   'mainName': 'Lo-Fi',
-  'description': 'Lorem Ipsum',
+  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   'category': 'Instrumentals',
   'songs': 'lofi',
 };

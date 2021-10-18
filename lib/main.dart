@@ -8,6 +8,10 @@ import 'package:flutter_1/page/community_page.dart';
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 
+/// the main entry point is made asynchronous because
+/// its better to let the Settings package initialization run alongside of the app build
+/// EasyDynamicThemeWidget acts like a trigger which lets the Material app know that it has to rebuild 
+/// and switch to another ThemeData 
 Future main() async {
   await Settings.init(cacheProvider: SharePreferenceCache());
   runApp(

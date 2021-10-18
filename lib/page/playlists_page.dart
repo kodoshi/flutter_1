@@ -63,12 +63,12 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                             specificPlaylistInfo = {
                               'id': '0',
                               'mainName': 'Trappin',
-                              'description': 'Lorem Ipsum',
+                              'description':
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                               'category': 'Instrumentals',
                               'songs': 'lofi',
                             };
-                            setState(() {
-                            });
+                            setState(() {});
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -82,12 +82,12 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                             specificPlaylistInfo = {
                               'id': '1',
                               'mainName': 'Trappin',
-                              'description': 'Lorem Ipsum',
+                              'description':
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                               'category': 'Instrumentals',
                               'songs': 'lofi',
                             };
-                            setState(() {
-                            });
+                            setState(() {});
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -101,12 +101,12 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                             specificPlaylistInfo = {
                               'id': '2',
                               'mainName': 'Trappin',
-                              'description': 'Lorem Ipsum',
+                              'description':
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                               'category': 'Instrumentals',
                               'songs': 'lofi',
                             };
-                            setState(() {
-                            });
+                            setState(() {});
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -120,12 +120,12 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                             specificPlaylistInfo = {
                               'id': '3',
                               'mainName': 'Trappin',
-                              'description': 'Lorem Ipsum',
+                              'description':
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                               'category': 'Instrumentals',
                               'songs': 'lofi',
                             };
-                            setState(() {
-                            });
+                            setState(() {});
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -169,12 +169,12 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                             specificPlaylistInfo = {
                               'id': '4',
                               'mainName': 'Tropical',
-                              'description': 'Lorem Ipsum',
+                              'description':
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                               'category': 'Nature',
                               'songs': 'tropical',
                             };
-                            setState(() {
-                            });
+                            setState(() {});
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -188,12 +188,12 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                             specificPlaylistInfo = {
                               'id': '5',
                               'mainName': 'Tropical',
-                              'description': 'Lorem Ipsum',
+                              'description':
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                               'category': 'Nature',
                               'songs': 'tropical',
                             };
-                            setState(() {
-                            });
+                            setState(() {});
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -207,12 +207,12 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                             specificPlaylistInfo = {
                               'id': '6',
                               'mainName': 'Tropical',
-                              'description': 'Lorem Ipsum',
+                              'description':
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                               'category': 'Nature',
                               'songs': 'tropical',
                             };
-                            setState(() {
-                            });
+                            setState(() {});
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -226,12 +226,12 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                             specificPlaylistInfo = {
                               'id': '7',
                               'mainName': 'Tropical',
-                              'description': 'Lorem Ipsum',
+                              'description':
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                               'category': 'Nature',
                               'songs': 'tropical',
                             };
-                            setState(() {
-                            });
+                            setState(() {});
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

@@ -36,7 +36,7 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         leading: BackButton(),
-        title: Text('Playlist'),
+        title: Text(getText('playlist').toString()),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
       ),
@@ -68,8 +68,6 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
               margin: EdgeInsets.fromLTRB(80, 0, 80, 0),
               child: ElevatedButton(
                   onPressed: () {
-                    print("we here");
-                    print(int.parse(specificPlaylistInfo['id']!));
                     globalTiles.add(
                         specificTiles[int.parse(specificPlaylistInfo['id']!)]); 
                         // specificPlaylistInfo instance is updated in Playlists screen, right before this page is loaded,
