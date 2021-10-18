@@ -1,16 +1,22 @@
-# flutter_1
+# VaporWare
 
-A new Flutter project.
+A playlist-player app which aims to give sleep aid and help with insomnia, through calming music.
 
-## Getting Started
+## Pages
 
-This project is a starting point for a Flutter application.
+1. Home Page - it will hold all active playlists tile.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+2. Playlists Page - holds a representation of which playlist you can choose from, categorized in different types of music.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+3. Specific Playlist Page - can be redirected here once a playlist is selected from the previous route, is used to give a more detailed description and to add that playlist tile to Home Page.
+
+
+4. Community Page - it will hold the most upvoted music tiles from the userbase
+
+
+5. Statistics Page - displays info about total play time in chart form
+
+
+6. Profile Page - holds details about the user, like name, email, profile picture, and also holds some settings tiles that can change the app language and dark/light theme
