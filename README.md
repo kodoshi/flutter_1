@@ -1,4 +1,4 @@
-# VaporWare
+# VaporWare, unit M-TRC-836
 
 A playlist-player app which aims to give sleep aid and help with insomnia, through calming music.
 
