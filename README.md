@@ -1,22 +1,25 @@
-# VaporWare, unit M-TRC-836
+# VaporWare, unit M-TRC-836 & M-TRC-837
 
-A playlist-player app which aims to give sleep aid and help with insomnia, through calming music.
+Team members:
 
-## Pages
+- Gianni Saliniere-Coursy
+- Klivens Ziu
+- Lucas Mathieux
+- Leyton Ly
 
-1. Home Page - it will hold all active playlists tile.
+## Backend
+
+Commands to start the Nodejs server in backend folder:
+```npm install```
+```npm start```
+
+Make sure to create a .env file and update the variables, based on the .env.sample provided.
+
+A cloud mongo instance is being used at the moment.
 
 
-2. Playlists Page - holds a representation of which playlist you can choose from, categorized in different types of music.
+## Mobile
 
-
-3. Specific Playlist Page - can be redirected here once a playlist is selected from the previous route, is used to give a more detailed description and to add that playlist tile to Home Page.
-
-
-4. Community Page - it will hold the most upvoted music tiles from the userbase
-
-
-5. Statistics Page - displays info about total play time in chart form
-
-
-6. Profile Page - holds details about the user, like name, email, profile picture, and also holds some settings tiles that can change the app language and dark/light theme
+Commands to start the Flutter app in mobile folder:
+```flutter pub get```
+```flutter run```
