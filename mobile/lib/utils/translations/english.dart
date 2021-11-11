@@ -20,6 +20,8 @@ class EnglishTranslation {
     'instrumentalDescription': 'Relaxing, minimalistic music',
     'nature': 'Nature',
     'natureDescription': 'Calming nature and forest sounds',
+    'pop': 'Pop',
+    'popDescription': 'Popular with many people',
     'community': 'Community',
     'communityFavorites': 'Community Favorites',
     'monday': 'Monday',

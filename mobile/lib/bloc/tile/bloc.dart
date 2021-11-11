@@ -54,6 +54,8 @@ class TilesBloc {
       if (code != 200) {
         throw Exception("Received " + code.toString() + " status code");
       }
+
+      tileEventSink.add(TileGetEvent());
       return TileAddedState();
     } on Exception catch (e) {
       return TileErrorState(
@@ -70,6 +72,8 @@ class TilesBloc {
       if (code != 200) {
         throw Exception("Received " + code.toString() + " status code");
       }
+
+      tileEventSink.add(TileGetEvent());
       return TileDeletedState();
     } on Exception catch (e) {
       return TileErrorState(

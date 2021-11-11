@@ -6,6 +6,7 @@ import 'package:flutter_1/bloc/tile/event.dart';
 import 'package:flutter_1/bloc/tile/state.dart';
 import 'package:flutter_1/widget/footer.dart';
 import 'package:flutter_1/utils/globalVars.dart';
+import 'package:flutter_1/widget/music/music_tile.dart';
 
 /// this page will contain all the active playlists and audio players,
 /// that are added by PlaylistsPage and SpecificPlaylistPage
@@ -70,7 +71,16 @@ class _HomePageState extends State<HomePage>
                         itemBuilder: (BuildContext ctx, index) {
                           return Container(
                             alignment: Alignment.center,
-                            child: specificTiles[index],
+                            child: MusicTile(
+                                index: data.tiles[index].index,
+                                id: data.tiles[index].id,
+                                trackName: data.tiles[index].songs[0],
+                                imageName: data.tiles[index].image,
+                                metaTitle: data.tiles[index].metaTitle,
+                                metaArtist: data.tiles[index].metaArtist,
+                                metaAlbum: data.tiles[index].metaAlbum,
+                                tileBloc: _tileBloc,
+                            ),
                           );
                         });
               } else if (snapshot.data is TileErrorState) {

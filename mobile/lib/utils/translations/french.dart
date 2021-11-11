@@ -20,6 +20,8 @@ class FrenchTranslation {
     'instrumentalDescription': 'Musique relaxante et minimaliste',
     'nature': 'Nature',
     'natureDescription': 'Sons apaisants de la nature et de la forêt',
+    'pop': 'Pop',
+    'popDescription': 'Populaire auprès de beaucoup de personnes',
     'community': 'Communauté',
     'communityFavorites': 'Favoris de la communauté',
     'monday': 'Lundi',

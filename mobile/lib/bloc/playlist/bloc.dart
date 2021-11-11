@@ -31,8 +31,7 @@ class PlaylistsBloc {
 
   Future<PlaylistState> _get(PlaylistGetEvent event) async {
     try {
-      //final List<Playlist> list = await repository.getPlaylists();
-      List<Playlist> list = [Playlist(index: 0, description: "Test", category: "sheeesh", id: "490294", songs: [])];
+      final List<Playlist> list = await repository.getPlaylists();
 
       return PlaylistLoadedState(playlists: list);
     } on Exception catch (e) {

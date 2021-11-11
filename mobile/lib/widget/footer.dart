@@ -5,15 +5,14 @@ import 'package:flutter_1/page/playlists_page.dart';
 import 'package:flutter_1/page/community_page.dart';
 import 'package:flutter_1/page/user_statistics.dart';
 import 'package:flutter_1/utils/globalVars.dart';
-import 'package:flutter_1/page/specific_playlist_page.dart';
 
 /// a bottom navigation bar which is responsible for redirects inside the app
 /// its used in most pages, to simplify visual navigation
 class Footer extends StatelessWidget {
   final String? page;
 
-  final indexArray = ["home", "playlists", "community", "statistics", "profile", "specific"];
-  final redirectArray = [HomePage(), PlaylistsPage(), CommunityPage(), UserStatisticsPage(), ProfilePage(), SpecificPlaylistPage(),];
+  final indexArray = ["home", "playlists", "community", "statistics", "profile",];
+  final redirectArray = [HomePage(), PlaylistsPage(), CommunityPage(), UserStatisticsPage(), ProfilePage(),];
   Footer({this.page});
 
   @override
