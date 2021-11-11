@@ -23,7 +23,8 @@ db.on("error", function (err) {
   console.log(err);
 });
 
-const createRoutes = require("./routes/create"); //post routing
+const createRoutes = require("./routes/create"); //creating new objects routing
+const playlistRoutes = require("./routes/playlist"); //playlist routing
 const userRoutes = require("./routes/user"); //user routing
 
 
@@ -35,6 +36,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cors());
 app.use("/", createRoutes);
+app.use("/", playlistRoutes);
 app.use("/", userRoutes);
 
 //custom middleware to give cleaner missing auth error
