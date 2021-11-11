@@ -1,35 +1,51 @@
+import 'dart:async';
+import 'package:flutter/services.dart';
 import 'package:flutter_1/api/playlist/services.dart';
 import 'package:flutter_1/bloc/playlist/state.dart';
 import 'package:flutter_1/model/playlist.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'event.dart';
 
 
-class PlaylistsBloc extends Bloc<PlaylistEvent, PlaylistState> {
-  final PlaylistsRepo repository;
+class PlaylistsBloc {
+  PlaylistsRepo repository;
 
-  PlaylistsBloc({required this.repository}) : super(PlaylistInitState());
+  final _playlistStateController = StreamController<PlaylistState>();
+  StreamSink<PlaylistState> get _inPlaylists => _playlistStateController.sink;
 
-  @override
-  Stream<PlaylistState> mapEventToState(PlaylistEvent event) async* {
-    yield PlaylistLoadingState();
+  Stream<PlaylistState> get playlists => _playlistStateController.stream;
+
+  final _playlistEventController = StreamController<PlaylistEvent>();
+
+  Sink<PlaylistEvent> get playlistEventSink => _playlistEventController.sink;
+
+  PlaylistsBloc({required this.repository}) {
+    _playlistEventController.stream.listen(_mapEventToState);
+  }
+
+  void _mapEventToState(PlaylistEvent event) async {
+    _inPlaylists.add(PlaylistInitState());
 
     if (event is PlaylistGetEvent) {
-      yield* _get(event);
+      _inPlaylists.add(await _get(event));
     }
   }
 
-  Stream<PlaylistState> _get(PlaylistGetEvent event) async* {
+  Future<PlaylistState> _get(PlaylistGetEvent event) async {
     try {
-      final List<Playlist> list = await repository.getPlaylists();
+      //final List<Playlist> list = await repository.getPlaylists();
+      List<Playlist> list = [Playlist(id: 0, description: "Test", image: ByteData(111), songs: [])];
 
-      yield PlaylistLoadedState(playlists: list);
+      return PlaylistLoadedState(playlists: list);
     } on Exception catch (e) {
-      yield PlaylistErrorState(
+      return PlaylistErrorState(
           event: event,
           message: e.toString()
       );
     }
+  }
+
+  void dispose() {
+    _playlistStateController.close();
+    _playlistEventController.close();
   }
 }

@@ -1,64 +1,80 @@
+import 'dart:async';
+
 import 'package:flutter_1/api/tile/services.dart';
 import 'package:flutter_1/bloc/tile/event.dart';
 import 'package:flutter_1/bloc/tile/state.dart';
 import 'package:flutter_1/model/playlist.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-class TilesBloc extends Bloc<TileEvent, TileState> {
+class TilesBloc {
   final TilesRepo repository;
 
-  TilesBloc({required this.repository}) : super(TileInitState());
+  final _tileStateController = StreamController<TileState>();
+  StreamSink<TileState> get _inTiles => _tileStateController.sink;
 
-  @override
-  Stream<TileState> mapEventToState(TileEvent event) async* {
-    yield TileLoadingState();
+  Stream<TileState> get tiles => _tileStateController.stream;
+
+  final _tileEventController = StreamController<TileEvent>();
+
+  Sink<TileEvent> get tileEventSink => _tileEventController.sink;
+
+  TilesBloc({required this.repository}) {
+    _tileEventController.stream.listen(_mapEventToState);
+  }
+
+  void _mapEventToState(TileEvent event) async {
+    _inTiles.add(TileLoadingState());
 
     if (event is TileGetEvent) {
-      yield* _get(event);
+      _inTiles.add(await _get(event));
     } else if (event is TileAddEvent) {
-      yield* _add(event);
+      _inTiles.add(await _add(event));
     } else if (event is TileDeleteEvent) {
-      yield* _delete(event);
+      _inTiles.add(await _delete(event));
     }
   }
 
-  Stream<TileState> _get(TileGetEvent event) async* {
+  Future<TileState> _get(TileGetEvent event) async {
     try {
       final List<Playlist> list = await repository.getTileList();
 
-      yield TileLoadedState(tiles: list);
+      return TileLoadedState(tiles: list);
     } on Exception catch (e) {
-      yield TileErrorState(
+      return TileErrorState(
         event: event,
         message: e.toString()
       );
     }
   }
 
-  Stream<TileState> _add(TileAddEvent event) async* {
+  Future<TileState> _add(TileAddEvent event) async {
     try {
       final List<Playlist> list = await repository.addTile(event.id);
 
-      yield TileLoadedState(tiles: list);
+      return TileLoadedState(tiles: list);
     } on Exception catch (e) {
-      yield TileErrorState(
+      return TileErrorState(
           event: event,
           message: e.toString()
       );
     }
   }
 
-  Stream<TileState> _delete(TileDeleteEvent event) async* {
+  Future<TileState> _delete(TileDeleteEvent event) async {
     try {
       final List<Playlist> list = await repository.removeTile(event.id);
 
-      yield TileLoadedState(tiles: list);
+      return TileLoadedState(tiles: list);
     } on Exception catch (e) {
-      yield TileErrorState(
+      return TileErrorState(
           event: event,
           message: e.toString()
       );
     }
+  }
+
+  void dispose() {
+    _tileStateController.close();
+    _tileEventController.close();
   }
 }

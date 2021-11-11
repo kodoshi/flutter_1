@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_1/api/playlist/services.dart';
+import 'package:flutter_1/bloc/playlist/bloc.dart';
+import 'package:flutter_1/bloc/playlist/event.dart';
+import 'package:flutter_1/bloc/playlist/state.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 import 'package:flutter_1/widget/footer.dart';
-import 'package:flutter_1/page/specific_playlist_page.dart';
 
 /// this page is responsible for showing categories and specific playlists that can be chosen by the user
 /// when these playlists are clicked or tapped, this page will redirect to SpecificPlaylistPage
@@ -14,21 +17,52 @@ class PlaylistsPage extends StatefulWidget {
 }
 
 class _PlaylistsPageState extends State<PlaylistsPage> {
+  final _playlistBloc = PlaylistsBloc(repository: PlaylistServices());
+
   @override
   void initState() {
     super.initState();
+
+    _playlistBloc.playlistEventSink.add(PlaylistGetEvent());
   }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: BackButton(),
-          title: Text(getText('playlists').toString()),
-          centerTitle: true,
-          backgroundColor: Theme.of(context).primaryColor,
-        ),
-        body: ListView(
+      appBar: AppBar(
+        leading: BackButton(),
+        title: Text(getText('playlists').toString()),
+        centerTitle: true,
+        backgroundColor: Theme
+            .of(context)
+            .primaryColor,
+      ),
+      body: Center(
+        child: StreamBuilder(
+            stream: _playlistBloc.playlists,
+            initialData: PlaylistInitState(),
+            builder: (BuildContext context, AsyncSnapshot<PlaylistState> snapshot) {
+              print(snapshot.data.toString());
+              if (snapshot.data is PlaylistLoadedState) {
+                return Text((snapshot.data as PlaylistLoadedState).playlists[0].description);
+              } else if (snapshot.data is PlaylistErrorState) {
+                return Text("Error");
+              } else {
+                return Text("Loading ...");
+              }
+            }
+      ),
+    ),
+    backgroundColor: Theme.of(context).backgroundColor,
+    bottomNavigationBar: new Footer(page: "playlists"
+    )
+    );
+  }
+}
+
+/*
+ListView(
           children: <Widget>[
             Container(
                 padding: EdgeInsets.fromLTRB(
@@ -244,7 +278,4 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                     ))),
           ],
         ),
-        backgroundColor: Theme.of(context).backgroundColor,
-        bottomNavigationBar: new Footer(page: "playlists"));
-  }
-}
+ */
