@@ -12,7 +12,7 @@ class PlaylistServices implements PlaylistsRepo {
 
   @override
   Future<List<Playlist>> getPlaylists() async {
-    Uri uri = Uri.https(ApiUrl.url, _GET_PLAYLISTS);
+    Uri uri = Uri.parse(ApiUrl.url + _GET_PLAYLISTS);
     Response response = await http.get(uri);
 
     List<Playlist> playlists = playlistFromJson(response.body);

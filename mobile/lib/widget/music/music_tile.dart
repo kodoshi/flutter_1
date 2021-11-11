@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:flutter_1/api/tile/services.dart';
+import 'package:flutter_1/bloc/tile/bloc.dart';
+import 'package:flutter_1/bloc/tile/event.dart';
+import 'package:flutter_1/bloc/tile/state.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 
-/// the workhorse of the app, this class holds a new instance of an active playlist, 
-/// the details of which are required when this widget gets initialized, 
-/// the instance is responsible for the visual look of the Tile, 
+/// the workhorse of the app, this class holds a new instance of an active playlist,
+/// the details of which are required when this widget gets initialized,
+/// the instance is responsible for the visual look of the Tile,
 /// for managing its audio player, and for disposing itself if needed
 class MusicTile extends StatefulWidget {
   final int globalTileID;
@@ -32,11 +36,11 @@ class MusicTile extends StatefulWidget {
 class _MusicTileState extends State<MusicTile> {
   bool isPlaying = false;
   AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
+  final _tileBloc = TilesBloc(repository: TileServices());
 
   @override
   void initState() {
-    super.initState(
-    );
+    super.initState();
     print('TRACK NAME IN TILE: ' + widget.trackName);
     audioPlayer.open(
         Audio(widget.trackName,
@@ -89,24 +93,42 @@ class _MusicTileState extends State<MusicTile> {
           Positioned(
             bottom: 8,
             right: 0,
-            child: ElevatedButton(
-              child: Icon(Icons.delete_forever_outlined),
-              onPressed: () => {dispose()},
-              style: ElevatedButton.styleFrom(
-                primary: Colors.black54,
-                shape: CircleBorder(),
-              ),
-            ),
+            child: StreamBuilder(
+                stream: _tileBloc.tiles,
+                initialData: TileInitState(),
+                builder: (BuildContext context, AsyncSnapshot<TileState> snapshot) {
+                  if (snapshot.data is TileDeletedState) {
+                    dispose();
+                  } else if (snapshot.data is TileInitState) {
+                    return ElevatedButton(
+                      child: Icon(Icons.delete_forever_outlined),
+                      onPressed: () => {_tileBloc.tileEventSink
+                          .add(TileDeleteEvent(id: "618bc399e1a5b35265ec41b1"))},
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.black54,
+                        shape: CircleBorder(),
+                      ),
+                    );
+                  }
+                  return ElevatedButton(
+                    child: Icon(Icons.delete_forever_outlined),
+                    onPressed: () => {},
+
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.black54,
+                      shape: CircleBorder(),
+                    ),
+                  );
+                }),
           ),
           Positioned(
             bottom: 14,
             left: 20,
             child: Text(widget.metaTitle,
-                    style: TextStyle(fontSize: 15, color: Colors.white)),
+                style: TextStyle(fontSize: 15, color: Colors.white)),
           ),
         ],
       ),
-      
     );
   }
 
@@ -124,7 +146,6 @@ class _MusicTileState extends State<MusicTile> {
 
   @override
   void dispose() {
-    globalTiles.removeWhere((item) => item.globalTileID == widget.globalTileID);
     audioPlayer.dispose();
     super.dispose();
     emitter.emit("updateTileList", "musicTile", null);

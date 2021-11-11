@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:flutter_1/model/song.dart';
 
 List<Playlist> playlistFromJson(String str) =>
@@ -11,27 +9,31 @@ String playlistToJson(List<Playlist> data) =>
 
 class Playlist {
   Playlist(
-      {required this.id,
+      {required this.index,
       required this.description,
-      required this.image,
+      required this.category,
+      required this.id,
       required this.songs});
 
-  int id;
+  int index;
   String description;
-  ByteData image;
+  String category;
+  String id;
   List<Song> songs;
 
   factory Playlist.fromJson(Map<String, dynamic> json) => Playlist(
-    id: json["id"],
-    description: json["description"],
-    image: json["image"],
-    songs: songFromJson(json["songs"])
-  );
+      index: json["index"],
+      description: json["description"],
+      category: json["category"],
+      id: json["_id"],
+      songs: [] //songFromJson(jsonEncode(json["songs"]))
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "description": description,
-    "image": image,
-    "songs": songToJson(songs)
-  };
+        "index": index,
+        "description": description,
+        "category": category,
+        "_id": id,
+        "songs": songToJson(songs)
+      };
 }

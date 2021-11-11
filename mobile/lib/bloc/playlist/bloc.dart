@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/services.dart';
 import 'package:flutter_1/api/playlist/services.dart';
 import 'package:flutter_1/bloc/playlist/state.dart';
 import 'package:flutter_1/model/playlist.dart';
@@ -33,7 +32,7 @@ class PlaylistsBloc {
   Future<PlaylistState> _get(PlaylistGetEvent event) async {
     try {
       //final List<Playlist> list = await repository.getPlaylists();
-      List<Playlist> list = [Playlist(id: 0, description: "Test", image: ByteData(111), songs: [])];
+      List<Playlist> list = [Playlist(index: 0, description: "Test", category: "sheeesh", id: "490294", songs: [])];
 
       return PlaylistLoadedState(playlists: list);
     } on Exception catch (e) {

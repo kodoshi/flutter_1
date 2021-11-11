@@ -20,6 +20,14 @@ class TileLoadedState extends TileState {
   TileLoadedState({required this.tiles});
 }
 
+class TileAddedState extends TileState {
+  const TileAddedState();
+}
+
+class TileDeletedState extends TileState {
+  const TileDeletedState();
+}
+
 class TileErrorState extends TileState implements ErrorState {
   final TileEvent event;
   final String message;

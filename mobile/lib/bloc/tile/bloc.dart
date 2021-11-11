@@ -49,9 +49,12 @@ class TilesBloc {
 
   Future<TileState> _add(TileAddEvent event) async {
     try {
-      final List<Playlist> list = await repository.addTile(event.id);
+      int code = await repository.addTile(event.id);
 
-      return TileLoadedState(tiles: list);
+      if (code != 200) {
+        throw Exception("Received " + code.toString() + " status code");
+      }
+      return TileAddedState();
     } on Exception catch (e) {
       return TileErrorState(
           event: event,
@@ -62,9 +65,12 @@ class TilesBloc {
 
   Future<TileState> _delete(TileDeleteEvent event) async {
     try {
-      final List<Playlist> list = await repository.removeTile(event.id);
+      int code = await repository.removeTile(event.id);
 
-      return TileLoadedState(tiles: list);
+      if (code != 200) {
+        throw Exception("Received " + code.toString() + " status code");
+      }
+      return TileDeletedState();
     } on Exception catch (e) {
       return TileErrorState(
           event: event,
