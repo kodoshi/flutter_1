@@ -10,15 +10,15 @@ const playlistSchema = new mongoose.Schema({
     type: String,
     default: "Lorem Ipsum",
   },
-  
-  category:{
+
+  category: {
     type: String,
     default: "Nature",
   },
 
   image: {
-    data: Buffer, //binary data
-    contentType: String, //will hold the format of the picture uploaded
+    type: String,
+    default: "street_japan_night.jpg",
   },
 
   songs: [
@@ -27,6 +27,12 @@ const playlistSchema = new mongoose.Schema({
       default: "lofi.mp3",
     },
   ],
+
+  meta: {
+    title: { type: String, default: "Lo-Fi" },
+    artist: { type: String, default: "Various Artists" },
+    album: { type: String, default: "Instrumentals" },
+  },
 });
 
 module.exports = mongoose.model("Playlist", playlistSchema);
