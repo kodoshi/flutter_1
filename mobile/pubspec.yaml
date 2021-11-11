@@ -32,6 +32,8 @@ dependencies:
   flutter_settings_screens:
     git: git@github.com:kodoshi/flutter_settings_screens.git
   eventify: ^1.0.0
+  equatable: ^2.0.3
+  flutter_bloc: ^7.3.3
 
 dev_dependencies:
   flutter_test:
