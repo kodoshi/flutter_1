@@ -1,56 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/user");
-const authController = require("../controllers/auth");
 
 /**
- * routes getting 'filtered' through middlewares
+ * Tile routes
  */
-router.put(
-  "/user/follow",
-  authController.requireSignin,
-  userController.addFollowing,
-  userController.addFollower
-);
+router.get("/user/tiles", userController.getAllActiveTiles);
+router.post("/user/tiles/:tileId", userController.addActiveTile);
+router.delete("/user/tiles/:tileId", userController.removeActiveTile);
 
-router.put(
-  "/user/unfollow",
-  authController.requireSignin,
-  userController.removeFollowing,
-  userController.removeFollower
-);
+/**
+ * Personal user routes
+ */
+router.get("/user/stats", userController.getStats);
+router.get("/user/personal", userController.getPersonalInfo);
+router.put("/user/personal", userController.updatePersonalInfo);
+//router.post("/user/picture", userController.uploadProfilePicture);
 
-router.get("/users", userController.allUsers);
-
-router.get(
-  "/user/:userId",
-  authController.requireSignin,
-  userController.getUser
-);
-
-router.put(
-  "/user/:userId",
-  authController.requireSignin,
-  userController.hasAuthorization,
-  userController.updateUser
-);
-
-router.delete(
-  "/user/:userId",
-  authController.requireSignin,
-  userController.hasAuthorization,
-  userController.deleteUser
-);
-
-router.get("/user/photo/:userId", userController.userPhoto);
-
-router.get(
-  "/user/tofollow/:userId",
-  authController.requireSignin,
-  userController.findPeople
-); // who to follow
-
-//userById() with be executed in routes that have :userId
-router.param("userId", userController.userById);
-
+router.param("tileId", userController.tileById);
 module.exports = router;

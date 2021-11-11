@@ -1,14 +1,10 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+require('dotenv').config();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const expressValidator = require("express-validator");
 const cors = require("cors");
-
-process.env.PORT = 4242;
-process.env.NODE_ENV = "development";
 
 // Mongoose DB connection
 mongoose.connect(process.env.DB_CFG, {
@@ -27,20 +23,18 @@ db.on("error", function (err) {
   console.log(err);
 });
 
-const postRoutes = require("./routes/post"); //post routing
-const authRoutes = require("./routes/auth"); //authentication routing
+const createRoutes = require("./routes/create"); //post routing
 const userRoutes = require("./routes/user"); //user routing
-//app.use("/api", express.static("docs/api_docs.json")); //API Routes Documentation
-//app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openApiDocumentation)); //API Routes Documentation v2
+
 
 //middlewares
 app.use(morgan("dev"));
-app.use(bodyParser.json()); //express is depress-ion
-app.use(cookieParser());
-app.use(expressValidator());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
 app.use(cors());
-app.use("/", postRoutes);
-app.use("/", authRoutes);
+app.use("/", createRoutes);
 app.use("/", userRoutes);
 
 //custom middleware to give cleaner missing auth error

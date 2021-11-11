@@ -1,7 +1,4 @@
 const mongoose = require("mongoose");
-//const uuidv1 = require("uuid/v1");  deprecated?
-const { v1: uuidv1 } = require("uuid");
-const crypto = require("crypto");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -26,36 +23,12 @@ const userSchema = new mongoose.Schema({
 
   active_tiles: [{ type: mongoose.Schema.ObjectId, ref: "Playlist" }],
 
-  stats: {
-    monday: {
+  stats: [
+    {
       type: mongoose.Schema.ObjectId,
       ref: "SingleDayStat",
     },
-    tuesday: {
-      type: mongoose.Schema.ObjectId,
-      ref: "SingleDayStat",
-    },
-    wednesday: {
-      type: mongoose.Schema.ObjectId,
-      ref: "SingleDayStat",
-    },
-    thursday: {
-      type: mongoose.Schema.ObjectId,
-      ref: "SingleDayStat",
-    },
-    friday: {
-      type: mongoose.Schema.ObjectId,
-      ref: "SingleDayStat",
-    },
-    saturday: {
-      type: mongoose.Schema.ObjectId,
-      ref: "SingleDayStat",
-    },
-    sunday: {
-      type: mongoose.Schema.ObjectId,
-      ref: "SingleDayStat",
-    },
-  },
+  ],
 });
 
 module.exports = mongoose.model("User", userSchema);

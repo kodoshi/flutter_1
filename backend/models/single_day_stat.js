@@ -12,6 +12,10 @@ const singleDaySchema = new mongoose.Schema({
   instrumental: {
     type: Number,
   },
+  
+  total_play_time: {
+    type: Number,
+  },
 });
 
 module.exports = mongoose.model("SingleDayStat", singleDaySchema);

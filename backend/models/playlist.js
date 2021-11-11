@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const playlistSchema = new mongoose.Schema({
-  id: {
+  index: {
     type: Number,
     default: 0,
   },
@@ -10,13 +10,23 @@ const playlistSchema = new mongoose.Schema({
     type: String,
     default: "Lorem Ipsum",
   },
+  
+  category:{
+    type: String,
+    default: "Nature",
+  },
 
   image: {
     data: Buffer, //binary data
     contentType: String, //will hold the format of the picture uploaded
   },
 
-  songs: [{ type: mongoose.Schema.ObjectId, ref: "SingleSong" }],
+  songs: [
+    {
+      type: String,
+      default: "lofi.mp3",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Playlist", playlistSchema);
