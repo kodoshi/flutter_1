@@ -1,10 +1,8 @@
-const User = require("../models/user");
 const Playlist = require("../models/playlist");
 const Community = require("../models/community");
-const SingleDayStat = require("../models/single_day_stat");
 
 /**
- * getAllPlaylists function, returns Playlists array ,queries and selections to/from db are made here with standart MongoDB methods, json response is being returned
+ * getAllPlaylists function, returns Playlists array
  *
  * @param {object} req HTTP request from express
  * @param {object} res HTTP response from express
@@ -21,7 +19,7 @@ exports.getAllPlaylists = (req, res) => {
 };
 
 /**
- * getCommunityPlaylists function,
+ * getCommunityPlaylists function, returns Playlists array organized in categories
  *
  * @param {object} req HTTP request from express
  * @param {object} res HTTP response from express

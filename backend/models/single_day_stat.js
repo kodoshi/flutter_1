@@ -1,20 +1,29 @@
 const mongoose = require("mongoose");
 
 const singleDaySchema = new mongoose.Schema({
+  day: {
+    type: String,
+    default: "Monday",
+  },
+
   pop: {
-    type: Number,
+    percentage: { type: Number, default: 0, },
+    playtime: { type: Number, default: 0, },
   },
 
   nature: {
-    type: Number,
+    percentage: { type: Number, default: 0, },
+    playtime: { type: Number, default: 0, },
   },
 
   instrumental: {
-    type: Number,
+    percentage: { type: Number, default: 0, },
+    playtime: { type: Number, default: 0, },
   },
-  
-  total_play_time: {
+
+  total_playtime: {
     type: Number,
+    default: 0,
   },
 });
 

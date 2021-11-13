@@ -17,8 +17,7 @@ const userSchema = new mongoose.Schema({
   },
 
   image: {
-    data: Buffer,
-    contentType: String,
+    type: String, //base64 encoded
   },
 
   active_tiles: [{ type: mongoose.Schema.ObjectId, ref: "Playlist" }],
