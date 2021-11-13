@@ -3,11 +3,11 @@ import 'package:flutter_1/model/playlist.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
-abstract class PlaylistsRepo {
+abstract class PlaylistRepo {
   Future<List<Playlist>> getPlaylists();
 }
 
-class PlaylistServices implements PlaylistsRepo {
+class PlaylistServices implements PlaylistRepo {
   static const String _GET_PLAYLISTS = '/playlists';
 
   @override

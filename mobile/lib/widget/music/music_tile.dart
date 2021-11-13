@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:flutter_1/bloc/stat/bloc.dart';
+import 'package:flutter_1/bloc/stat/event.dart';
 import 'package:flutter_1/bloc/tile/bloc.dart';
 import 'package:flutter_1/bloc/tile/event.dart';
 import 'package:flutter_1/utils/globalVars.dart';
@@ -17,26 +19,29 @@ class MusicTile extends StatefulWidget {
   final String metaTitle;
   final String metaArtist;
   final String metaAlbum;
+  final String category;
   final TilesBloc tileBloc;
+  final StatsBloc statBloc;
 
-  MusicTile({
-    Key? key,
-    required this.index,
-    required this.id,
-    required this.trackName,
-    required this.imageName,
-    required this.metaTitle,
-    required this.metaArtist,
-    required this.metaAlbum,
-    required this.tileBloc
-  }) : super(key: key);
+  MusicTile(
+      {Key? key,
+      required this.index,
+      required this.id,
+      required this.trackName,
+      required this.imageName,
+      required this.metaTitle,
+      required this.metaArtist,
+      required this.metaAlbum,
+      required this.category,
+      required this.tileBloc,
+      required this.statBloc})
+      : super(key: key);
 
   @override
   _MusicTileState createState() => _MusicTileState();
 }
 
 class _MusicTileState extends State<MusicTile> {
-  bool isPlaying = false;
   AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
 
   @override
@@ -54,13 +59,13 @@ class _MusicTileState extends State<MusicTile> {
             )),
         autoStart: false,
         showNotification: true);
-        // Playlist(
-        //   audios: [
-        //     Audio("assets/audios/song1.mp3"),
-        //     Audio("assets/audios/song2.mp3")
-        //   ]
-        // ),
-        // loopMode: LoopMode.playlist
+    // Playlist(
+    //   audios: [
+    //     Audio("assets/audios/song1.mp3"),
+    //     Audio("assets/audios/song2.mp3")
+    //   ]
+    // ),
+    // loopMode: LoopMode.playlist
   }
 
   @override
@@ -82,37 +87,35 @@ class _MusicTileState extends State<MusicTile> {
           Positioned(
             top: 8,
             right: 0,
-            child: ElevatedButton(
-              child: PlayerBuilder.isPlaying(
+            child: PlayerBuilder.isPlaying(
                 player: audioPlayer,
                 builder: (context, isPlaying) {
-                  return Icon(isPlaying ? Icons.pause : Icons.play_arrow);
-                },
-              ),
-              onPressed: () =>
-              {
-                playTrack(),
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.black54,
-                shape: CircleBorder(),
-              ),
-            ),
+                  return ElevatedButton(
+                    child: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
+                    onPressed: () => {
+                      _playTrack(isPlaying),
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.black54,
+                      shape: CircleBorder(),
+                    ),
+                  );
+                }),
           ),
           Positioned(
               bottom: 8,
               right: 0,
               child: ElevatedButton(
                 child: Icon(Icons.delete_forever_outlined),
-                onPressed: () =>
-                {widget.tileBloc.tileEventSink
-                    .add(TileDeleteEvent(id: widget.id))},
+                onPressed: () => {
+                  widget.tileBloc.tileEventSink
+                      .add(TileDeleteEvent(id: widget.id))
+                },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.black54,
                   shape: CircleBorder(),
                 ),
-              )
-          ),
+              )),
           Positioned(
             bottom: 14,
             left: 20,
@@ -124,17 +127,23 @@ class _MusicTileState extends State<MusicTile> {
     );
   }
 
-  void playTrack() {
-    setState(() {});
-    setState(() {
-      isPlaying = !isPlaying;
-      if (isPlaying) {
-        audioPlayer.play();
-      } else {
-        //print(audioPlayer.currentPosition.value); // .toString() can also be applied
-        audioPlayer.pause();
-      }
-    });
+  void _playTrack(bool isPlaying) {
+    if (!isPlaying) {
+      audioPlayer.play();
+    } else {
+      final dayMap = {
+        1: "Monday",
+        2: "Tuesday",
+        3: "Wednesday",
+        4: "Thursday",
+        5: "Friday",
+        6: "Saturday",
+        7: "Sunday"
+      };
+      widget.statBloc.statEventSink.add(StatAddEvent(
+          day: dayMap[DateTime.now().weekday] ?? "Monday", category: widget.category.toLowerCase(), playtime: audioPlayer.currentPosition.value.inSeconds));
+      audioPlayer.stop();
+    }
   }
 
   @override

@@ -45,7 +45,6 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
               initialData: PlaylistInitState(),
               builder: (BuildContext context,
                   AsyncSnapshot<PlaylistState> snapshot) {
-                print(snapshot.data.toString());
                 if (snapshot.data is PlaylistLoadedState) {
                   PlaylistLoadedState data = snapshot.data as PlaylistLoadedState;
                   return ListView(

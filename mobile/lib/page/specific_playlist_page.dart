@@ -80,7 +80,7 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
               child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    widget.imageName,
+                    widget.name,
                     style: TextStyle(fontSize: 28),
                     textAlign: TextAlign.center,
                   ))),
@@ -101,9 +101,6 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
               child: ElevatedButton(
                   onPressed: () {
                     widget.tileBloc.tileEventSink.add(TileAddEvent(id: widget.id));
-                    /*
-                    globalTiles.add(
-                        specificTiles[int.parse(specificPlaylistInfo['id']!)]); */
                     // specificPlaylistInfo instance is updated in Playlists screen, right before this page is loaded,
                     // Through that instance we can track which Tile is needed to be added to the Home screen through globalTiles
                   },

@@ -6,7 +6,7 @@ import 'event.dart';
 
 
 class PlaylistsBloc {
-  PlaylistsRepo repository;
+  PlaylistRepo repository;
 
   final _playlistStateController = StreamController<PlaylistState>();
   StreamSink<PlaylistState> get _inPlaylists => _playlistStateController.sink;

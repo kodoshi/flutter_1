@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_1/api/stat/services.dart';
 import 'package:flutter_1/api/tile/services.dart';
+import 'package:flutter_1/bloc/stat/bloc.dart';
 import 'package:flutter_1/bloc/tile/bloc.dart';
 import 'package:flutter_1/bloc/tile/event.dart';
 import 'package:flutter_1/bloc/tile/state.dart';
@@ -18,6 +20,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   final _tileBloc = TilesBloc(repository: TileServices());
+  final _statBloc = StatsBloc(repository: StatServices());
 
   @override
   void initState() {
@@ -79,7 +82,9 @@ class _HomePageState extends State<HomePage>
                                 metaTitle: data.tiles[index].metaTitle,
                                 metaArtist: data.tiles[index].metaArtist,
                                 metaAlbum: data.tiles[index].metaAlbum,
+                                category: data.tiles[index].category,
                                 tileBloc: _tileBloc,
+                                statBloc: _statBloc,
                             ),
                           );
                         });
@@ -112,30 +117,6 @@ class _HomePageState extends State<HomePage>
   void dispose() {
     super.dispose();
     _tileBloc.dispose();
+    _statBloc.dispose();
   }
 }
-
-/*
-(globalTiles.length == 0)
-              ? Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    getText('lonelyText').toString(),
-                    style: TextStyle(fontSize: 20,),
-                    textAlign: TextAlign.center,
-                  ))
-              : GridView.builder(
-                  padding: const EdgeInsets.all(25),
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 250,
-                      childAspectRatio: 1,
-                      crossAxisSpacing: 25,
-                      mainAxisSpacing: 25),
-                  itemCount: globalTiles.length,
-                  itemBuilder: (BuildContext ctx, index) {
-                    return Container(
-                      alignment: Alignment.center,
-                      child: globalTiles[index],
-                    );
-                  }),
- */

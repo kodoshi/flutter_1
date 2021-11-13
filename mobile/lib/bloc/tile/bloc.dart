@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter_1/api/tile/services.dart';
 import 'package:flutter_1/bloc/tile/event.dart';
 import 'package:flutter_1/bloc/tile/state.dart';
@@ -7,7 +6,7 @@ import 'package:flutter_1/model/playlist.dart';
 
 
 class TilesBloc {
-  final TilesRepo repository;
+  final TileRepo repository;
 
   final _tileStateController = StreamController<TileState>();
   StreamSink<TileState> get _inTiles => _tileStateController.sink;
