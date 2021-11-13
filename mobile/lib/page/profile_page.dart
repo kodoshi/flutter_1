@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_1/widget/footer.dart';
 import 'package:flutter_1/widget/icon/icon_widget.dart';
@@ -16,6 +17,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   File? photoTaken;
+  String? base64Image;
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +59,12 @@ class _ProfilePageState extends State<ProfilePage> {
                               )
                             : Container(
                                 decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: Image.file(photoTaken!).image)),
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: Image.file(photoTaken!).image,
+                                  ),
+                                ),
                                 height: 100,
                                 width: 100,
                               ),
@@ -152,7 +156,7 @@ class _ProfilePageState extends State<ProfilePage> {
         },
       );
 
-/// custom widget to build the settings tile responsible for Dark Theme Switch
+  /// custom widget to build the settings tile responsible for Dark Theme Switch
   Widget buildDarkMode() => SwitchSettingsTile(
         tileColor: Theme.of(context).backgroundColor,
         settingKey: 'key-dark-mode',
@@ -165,7 +169,7 @@ class _ProfilePageState extends State<ProfilePage> {
         },
       );
 
-/// async function taking care of image upload through camera
+  /// async function taking care of image upload through camera
   Future pickImageFromCamera({
     required BuildContext context,
   }) async {
@@ -173,6 +177,9 @@ class _ProfilePageState extends State<ProfilePage> {
     final image = await imagePicker.pickImage(source: ImageSource.camera);
     setState(() {
       photoTaken = File(image!.path);
+
+      //send base64Image to POST /user/picture , inside req.body.image
+      base64Image = base64Encode(photoTaken!.readAsBytesSync());
     });
   }
 }

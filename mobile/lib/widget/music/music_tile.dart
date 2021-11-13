@@ -54,6 +54,13 @@ class _MusicTileState extends State<MusicTile> {
             )),
         autoStart: false,
         showNotification: true);
+        // Playlist(
+        //   audios: [
+        //     Audio("assets/audios/song1.mp3"),
+        //     Audio("assets/audios/song2.mp3")
+        //   ]
+        // ),
+        // loopMode: LoopMode.playlist
   }
 
   @override
@@ -124,6 +131,7 @@ class _MusicTileState extends State<MusicTile> {
       if (isPlaying) {
         audioPlayer.play();
       } else {
+        //print(audioPlayer.currentPosition.value); // .toString() can also be applied
         audioPlayer.pause();
       }
     });
