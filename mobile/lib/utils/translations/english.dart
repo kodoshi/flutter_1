@@ -29,7 +29,7 @@ class EnglishTranslation {
     'wednesday': 'Wednesday',
     'thursday': 'Thursday',
     'friday': 'Friday',
-    'listeningTime' : 'Listening time stats (in hours)',
+    'listeningTime' : 'Listening time stats (in minutes)',
     'lonelyText': 'It feels lonely here, please add music from the Playlists screen.',
   };
 }

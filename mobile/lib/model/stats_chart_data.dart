@@ -7,9 +7,9 @@ List<StatsChartData> statsFromJson(String str) =>
 class StatsChartData {
   StatsChartData({required String day, required num nature, required num instrumental, required num pop}) {
     this.day = day;
-    this.nature = nature / 3600;
-    this.instrumental = instrumental / 3600 + this.nature;
-    this.pop = pop / 3600 + this.instrumental;
+    this.nature = nature / 60;
+    this.instrumental = instrumental / 60 + this.nature;
+    this.pop = pop / 60 + this.instrumental;
   }
 
   late String day;

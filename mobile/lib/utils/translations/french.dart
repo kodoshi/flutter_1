@@ -29,7 +29,7 @@ class FrenchTranslation {
     'wednesday': 'Mercredi',
     'thursday': 'Jeudi',
     'friday': 'Vendredi',
-    'listeningTime': 'Statistiques du temps d\'écoute (en heures)',
+    'listeningTime': 'Statistiques du temps d\'écoute (en minutes)',
     'lonelyText': 'On se sent seul ici, ajouter de la musique à partir de l\'écran Playlistes.',
   };
 }
