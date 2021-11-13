@@ -135,7 +135,7 @@ exports.updateStats = async (req, res) => {
         stat_object.nature.percentage *= coefficient;
         stat_object.pop.percentage *= coefficient;
 
-        stat_object.instrumental.playtime += req.body.playtime;
+        stat_object.instrumental.playtime += parseInt(req.body.playtime);
         stat_object.instrumental.percentage =
           (stat_object.instrumental.playtime * 100) /
           stat_object.total_playtime;
@@ -143,14 +143,14 @@ exports.updateStats = async (req, res) => {
         stat_object.instrumental.percentage *= coefficient;
         stat_object.pop.percentage *= coefficient;
 
-        stat_object.nature.playtime += req.body.playtime;
+        stat_object.nature.playtime += parseInt(req.body.playtime);
         stat_object.nature.percentage =
           (stat_object.nature.playtime * 100) / stat_object.total_playtime;
       } else if (req.body.category == "pop") {
         stat_object.instrumental.percentage *= coefficient;
         stat_object.nature.percentage *= coefficient;
 
-        stat_object.pop.playtime += req.body.playtime;
+        stat_object.pop.playtime += parseInt(req.body.playtime);
         stat_object.pop.percentage =
           (stat_object.pop.playtime * 100) / stat_object.total_playtime;
       }
