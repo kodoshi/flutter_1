@@ -50,7 +50,7 @@ class TilesBloc {
 
   Future<TileState> _add(TileAddEvent event) async {
     try {
-      repository.addTile(event.id);
+      await repository.addTile(event.id);
 
       tileEventSink.add(TileGetEvent());
       return TileAddedState();
@@ -64,7 +64,7 @@ class TilesBloc {
 
   Future<TileState> _delete(TileDeleteEvent event) async {
     try {
-      repository.removeTile(event.id);
+      await repository.removeTile(event.id);
 
       tileEventSink.add(TileGetEvent());
       return TileDeletedState();

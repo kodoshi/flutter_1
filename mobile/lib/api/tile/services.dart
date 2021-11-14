@@ -10,9 +10,9 @@ import 'package:http/http.dart';
 abstract class TileRepo {
   Future<List<Playlist>> getTileList();
 
-  void addTile(String id);
+  Future<void> addTile(String id);
 
-  void removeTile(String id);
+  Future<void> removeTile(String id);
 }
 
 class TileServices implements TileRepo {
@@ -52,7 +52,7 @@ class TileServices implements TileRepo {
   }
 
   @override
-  void addTile(String id) async {
+  Future<void> addTile(String id) async {
     Uri uri = Uri.parse(ApiUrl.url + _POST_TILES + "/" + id);
 
     Response response;
@@ -73,7 +73,7 @@ class TileServices implements TileRepo {
   }
 
   @override
-  void removeTile(String id) async {
+  Future<void> removeTile(String id) async {
     Uri uri = Uri.parse(ApiUrl.url + _DELETE_TILES + "/" + id);
 
     Response response;

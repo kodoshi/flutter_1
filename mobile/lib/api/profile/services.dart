@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:http_parser/http_parser.dart';
 
 import 'package:flutter_1/api/common/services.dart';
 import 'package:flutter_1/model/profile.dart';
@@ -51,15 +50,12 @@ class ProfileServices implements ProfileRepo {
   @override
   Future<void> updateImage(String image) async {
     Uri uri = Uri.parse(ApiUrl.url + _POST_PROFILE);
-    var request = http.MultipartRequest('POST', uri)
-      ..headers.addAll({'Content-Type': 'application/json'})
-      ..files.add(await http.MultipartFile.fromPath('image', image, contentType: MediaType('image', 'jpeg')));
 
-    var response;
+    Response response;
 
     try {
       response =
-          await request.send();
+          await http.post(uri, headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: {'image': image});
     } on SocketException catch (e) {
       if (e.osError!.message == "Network is unreachable")
         throw NetworkException();

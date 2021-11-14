@@ -6,11 +6,10 @@ import 'package:flutter_1/bloc/profile/bloc.dart';
 import 'package:flutter_1/bloc/profile/event.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:http/http.dart';
 
 class Picture extends StatefulWidget {
   final ProfilesBloc profileBloc;
-  final ByteStream? image;
+  final String image;
 
   Picture({Key? key, required this.profileBloc, required this.image}) : super(key: key);
 
@@ -23,9 +22,10 @@ class _PictureState extends State<Picture> {
     required BuildContext context,
   }) async {
     final imagePicker = ImagePicker();
-    final image = await imagePicker.pickImage(source: ImageSource.camera);
+    final image = await imagePicker.pickImage(source: ImageSource.gallery);
 
-    final photoTaken = File(image!.path);
+    print(image!.path);
+    final photoTaken = File(image.path);
 
     widget.profileBloc.profileEventSink.add(ProfileUpdateEvent(image: photoTaken.path));
   }
@@ -43,7 +43,7 @@ class _PictureState extends State<Picture> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            /*widget.image == null
+            widget.image.isEmpty
                 ? Icon(
                     Icons.account_circle,
                     size: 80,
@@ -54,17 +54,12 @@ class _PictureState extends State<Picture> {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: Image.network(src),
+                        image: Image.file(File(widget.image)).image,
                       ),
                     ),
                     height: 100,
                     width: 100,
-                  ),*/
-            Icon(
-              Icons.account_circle,
-              size: 80,
-              color: Theme.of(context).canvasColor,
-            ),
+                  ),
             Align(
               alignment: FractionalOffset.bottomCenter,
               child: Text(

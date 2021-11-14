@@ -49,7 +49,7 @@ class StatsBloc {
 
   Future<StatState> _add(StatAddEvent event) async {
     try {
-      repository.addStat(event.day, event.category, event.playtime);
+      await repository.addStat(event.day, event.category, event.playtime);
 
       statEventSink.add(StatGetEvent());
       return StatAddedState();

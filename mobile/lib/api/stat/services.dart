@@ -11,7 +11,7 @@ import '../exceptions.dart';
 abstract class StatRepo {
   Future<List<StatsChartData>> getStats();
 
-  void addStat(String day, String category, int playtime);
+  Future<void> addStat(String day, String category, int playtime);
 }
 
 class StatServices implements StatRepo {
@@ -48,7 +48,7 @@ class StatServices implements StatRepo {
   }
 
   @override
-  void addStat(String day, String category, int playtime) async {
+  Future<void> addStat(String day, String category, int playtime) async {
     Uri uri = Uri.parse(ApiUrl.url + _PUT_STATS);
 
     Response response;
