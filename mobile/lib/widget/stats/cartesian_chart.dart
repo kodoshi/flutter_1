@@ -82,7 +82,7 @@ class _CartesianChartWidgetState extends State<CartesianChartWidget> {
         } else if (snapshot.data is StatErrorState) {
           StatErrorState error = snapshot.data as StatErrorState;
           return AlertDialog(
-            title: Text("API Error"),
+            title: Text(error.title),
             content: Text(error.message),
             actions: [
               TextButton(

@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage>
               } else if (snapshot.data is TileErrorState) {
                 TileErrorState error = snapshot.data as TileErrorState;
                 return AlertDialog(
-                  title: Text("API Error"),
+                  title: Text(error.title),
                   content: Text(error.message),
                   actions: [
                     TextButton(

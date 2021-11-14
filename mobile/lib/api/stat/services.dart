@@ -1,14 +1,17 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter_1/api/common/services.dart';
 import 'package:flutter_1/model/stats_chart_data.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
+import '../exceptions.dart';
+
 abstract class StatRepo {
   Future<List<StatsChartData>> getStats();
 
-  Future<int> addStat(String day, String category, int playtime);
+  void addStat(String day, String category, int playtime);
 }
 
 class StatServices implements StatRepo {
@@ -18,27 +21,57 @@ class StatServices implements StatRepo {
   @override
   Future<List<StatsChartData>> getStats() async {
     Uri uri = Uri.parse(ApiUrl.url + _GET_STATS);
-    Response response = await http.get(uri);
+    Response response;
 
-    final Map<String, dynamic> json = jsonDecode(response.body);
+    try {
+      response = await http.get(uri);
+    } on SocketException catch (e) {
+      if (e.osError!.message == "Network is unreachable")
+        throw NetworkException();
+      else if (e.osError!.message == "Connection refused")
+        throw ApiException();
+      else
+        throw e;
+    }
 
-    List<StatsChartData> stats = statsFromJson(jsonEncode(json["stats"]));
+    if (response.statusCode != 200) throw DataException();
 
+    List<StatsChartData> stats;
+    try {
+      final Map<String, dynamic> json = jsonDecode(response.body);
+
+      stats = statsFromJson(jsonEncode(json["stats"]));
+    } on Exception {
+      throw DataException();
+    }
     return stats;
   }
 
   @override
-  Future<int> addStat(String day, String category, int playtime) async {
+  void addStat(String day, String category, int playtime) async {
     Uri uri = Uri.parse(ApiUrl.url + _PUT_STATS);
 
-    Response response = await http.put(uri, headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }, body: {
-      'day': day,
-      'category': category,
-      'playtime': playtime.toString()
-    });
+    Response response;
 
-    return response.statusCode;
+    try {
+      response = await http.put(uri, headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }, body: {
+        'day': day,
+        'category': category,
+        'playtime': playtime.toString()
+      });
+    } on SocketException catch (e) {
+      if (e.osError!.message == "Network is unreachable")
+        throw NetworkException();
+      else if (e.osError!.message == "Connection refused")
+        throw ApiException();
+      else
+        throw e;
+    }
+
+    if (response.statusCode != 200) throw DataException();
+
+    return;
   }
 }

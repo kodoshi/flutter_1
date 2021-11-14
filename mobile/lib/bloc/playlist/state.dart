@@ -22,7 +22,8 @@ class PlaylistLoadedState extends PlaylistState {
 
 class PlaylistErrorState extends PlaylistState implements ErrorState {
   final PlaylistEvent event;
+  final String title;
   final String message;
 
-  const PlaylistErrorState({required this.event, required this.message});
+  const PlaylistErrorState({required this.event, required this.title, required this.message});
 }

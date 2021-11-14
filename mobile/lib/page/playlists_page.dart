@@ -59,7 +59,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                   PlaylistErrorState error =
                       snapshot.data as PlaylistErrorState;
                   return AlertDialog(
-                    title: Text("API Error"),
+                    title: Text(error.title),
                     content: Text(error.message),
                     actions: [
                       TextButton(

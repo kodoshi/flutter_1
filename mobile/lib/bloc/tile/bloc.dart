@@ -1,14 +1,15 @@
 import 'dart:async';
+import 'package:flutter_1/api/exceptions.dart';
 import 'package:flutter_1/api/tile/services.dart';
 import 'package:flutter_1/bloc/tile/event.dart';
 import 'package:flutter_1/bloc/tile/state.dart';
 import 'package:flutter_1/model/playlist.dart';
 
-
 class TilesBloc {
   final TileRepo repository;
 
   final _tileStateController = StreamController<TileState>();
+
   StreamSink<TileState> get _inTiles => _tileStateController.sink;
 
   Stream<TileState> get tiles => _tileStateController.stream;
@@ -38,47 +39,39 @@ class TilesBloc {
       final List<Playlist> list = await repository.getTileList();
 
       return TileLoadedState(tiles: list);
-    } on Exception catch (e) {
-      return TileErrorState(
-        event: event,
-        message: e.toString()
-      );
+    } on CustomException catch (e) {
+      return TileErrorState(event: event, title: e.title, message: e.message);
+    } on Exception {
+      var e = UnknownError();
+      return TileErrorState(event: event, title: e.title, message: e.message);
     }
   }
 
   Future<TileState> _add(TileAddEvent event) async {
     try {
-      int code = await repository.addTile(event.id);
-
-      if (code != 200) {
-        throw Exception("Received " + code.toString() + " status code");
-      }
+      repository.addTile(event.id);
 
       tileEventSink.add(TileGetEvent());
       return TileAddedState();
-    } on Exception catch (e) {
-      return TileErrorState(
-          event: event,
-          message: e.toString()
-      );
+    } on CustomException catch (e) {
+      return TileErrorState(event: event, title: e.title, message: e.message);
+    } on Exception {
+      var e = UnknownError();
+      return TileErrorState(event: event, title: e.title, message: e.message);
     }
   }
 
   Future<TileState> _delete(TileDeleteEvent event) async {
     try {
-      int code = await repository.removeTile(event.id);
-
-      if (code != 200) {
-        throw Exception("Received " + code.toString() + " status code");
-      }
+      repository.removeTile(event.id);
 
       tileEventSink.add(TileGetEvent());
       return TileDeletedState();
-    } on Exception catch (e) {
-      return TileErrorState(
-          event: event,
-          message: e.toString()
-      );
+    } on CustomException catch (e) {
+      return TileErrorState(event: event, title: e.title, message: e.message);
+    } on Exception {
+      var e = UnknownError();
+      return TileErrorState(event: event, title: e.title, message: e.message);
     }
   }
 

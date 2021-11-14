@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter_1/api/exceptions.dart';
 import 'package:flutter_1/api/stat/services.dart';
 import 'package:flutter_1/bloc/stat/state.dart';
 import 'package:flutter_1/model/stats_chart_data.dart';
@@ -8,6 +9,7 @@ class StatsBloc {
   StatRepo repository;
 
   final _statStateController = StreamController<StatState>();
+
   StreamSink<StatState> get _inStats => _statStateController.sink;
 
   Stream<StatState> get stats => _statStateController.stream;
@@ -35,29 +37,25 @@ class StatsBloc {
       final List<StatsChartData> stats = await repository.getStats();
 
       return StatLoadedState(stats: stats);
-    } on Exception catch (e) {
-      return StatErrorState(
-          event: event,
-          message: e.toString()
-      );
+    } on CustomException catch (e) {
+      return StatErrorState(event: event, title: e.title, message: e.message);
+    } on Exception {
+      var e = UnknownError();
+      return StatErrorState(event: event, title: e.title, message: e.message);
     }
   }
 
   Future<StatState> _add(StatAddEvent event) async {
     try {
-      int code = await repository.addStat(event.day, event.category, event.playtime);
-
-      if (code != 200) {
-        throw Exception("Received " + code.toString() + " status code");
-      }
+      repository.addStat(event.day, event.category, event.playtime);
 
       statEventSink.add(StatGetEvent());
       return StatAddedState();
-    } on Exception catch (e) {
-      return StatErrorState(
-          event: event,
-          message: e.toString()
-      );
+    } on CustomException catch (e) {
+      return StatErrorState(event: event, title: e.title, message: e.message);
+    } on Exception {
+      var e = UnknownError();
+      return StatErrorState(event: event, title: e.title, message: e.message);
     }
   }
 
