@@ -21,7 +21,7 @@ class ApiException implements CustomException {
 
 class DataException implements CustomException {
   final String title = "Data Error";
-  final String message = "A data error occurred";
+  final String message = "Full record data is not available";
 
   DataException();
 }
