@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const fs = require("fs");
 const SingleDayStat = require("../models/single_day_stat");
 
 //saves us headaches by enabling the usage of findByIdAndUpdate
@@ -198,21 +199,14 @@ exports.updatePersonalInfo = async (req, res) => {
  * @returns {json} success message
  */
 exports.uploadProfilePicture = async (req, res) => {
-  const user = await User.findByIdAndUpdate(
-    myId,
-    {
-      image: req.body.image, //base64 string
-    },
-    { new: true }
-  ).exec((err, result) => {
-    if (err) {
-      return res.status(400).json({ error: err });
-    } else {
-      res
-        .status(200)
-        .json({ message: "image update successful", user: result });
-    }
-  });
+  const user = await User.findById(myId);
+
+  user.image.data = fs.readFileSync(req.files.image.path);
+  user.image.contentType = req.files.image.type;
+
+  const result = await user.save();
+
+  res.status(200).json({ message: "image update successful", result: result });
 };
 
 /**
