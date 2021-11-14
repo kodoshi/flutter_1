@@ -22,6 +22,7 @@ exports.getAllActiveTiles = (req, res) => {
           error: err,
         });
       }
+      
       return res.status(200).json(tiles);
     });
 };
@@ -109,6 +110,10 @@ exports.getStats = (req, res) => {
         return res.status(400).json({
           error: err,
         });
+      }
+      if(stats.stats.length==0)
+      {
+        return res.status(300).json({ message: "Stats array empty" });
       }
       return res.status(200).json(stats);
     });
