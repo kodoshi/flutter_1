@@ -45,7 +45,8 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
         counter++;
         var pos = item.lastIndexOf('/');
         var result = (pos != -1) ? item.substring(pos + 1) : item;
-        return Text("0" + counter.toString() + "     " + result, style: TextStyle(color: Colors.white));
+        return Text("0" + counter.toString() + "     " + result,
+            style: TextStyle(color: Colors.white));
       }).toList(),
     );
   }
@@ -81,24 +82,30 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
               padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Align(
                   alignment: Alignment.center,
-                  child: Text(widget.category, textAlign: TextAlign.center, style: TextStyle(fontSize: 14)))),
+                  child: Text(widget.category,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 14)))),
           Container(
               padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
               margin: EdgeInsets.fromLTRB(0, 20, 0, 15),
               child: Divider(color: Colors.blueGrey)),
           Container(
-              margin: EdgeInsets.fromLTRB(80, 0, 80, 0),
-              child: ElevatedButton(
-                  onPressed: () {
-                    widget.tileBloc.tileEventSink.add(TileAddEvent(id: widget.id));
-                    // specificPlaylistInfo instance is updated in Playlists screen, right before this page is loaded,
-                    // Through that instance we can track which Tile is needed to be added to the Home screen through globalTiles
-                  },
-                  child: Text(getText('addHome').toString()),
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>((Theme.of(context).cardColor)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)))))),
+            margin: EdgeInsets.fromLTRB(80, 0, 80, 0),
+            child: ElevatedButton(
+              onPressed: () {
+                widget.tileBloc.tileEventSink.add(TileAddEvent(id: widget.id));
+                // specificPlaylistInfo instance is updated in Playlists screen, right before this page is loaded,
+                // Through that instance we can track which Tile is needed to be added to the Home screen through globalTiles
+              },
+              child: Text(getText('addHome').toString()),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      (Theme.of(context).cardColor)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0)))),
+            ),
+          ),
           Container(
               padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
               margin: EdgeInsets.fromLTRB(0, 15, 0, 15),
@@ -129,7 +136,9 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
                   color: Colors.transparent,
                   child: Container(
                       decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor, borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                          color: Theme.of(context).cardColor,
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0))),
                       child: SizedBox(
                           height: 200,
                           child: ListView(
@@ -137,8 +146,11 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage> {
                             children: [
                               Container(
                                   margin: EdgeInsets.fromLTRB(10, 15, 0, 10),
-                                  child: Text("Music", style: TextStyle(color: Colors.white))),
-                              Container(margin: EdgeInsets.fromLTRB(10, 15, 0, 10), child: _getSongs(widget.songs))
+                                  child: Text("Music",
+                                      style: TextStyle(color: Colors.white))),
+                              Container(
+                                  margin: EdgeInsets.fromLTRB(10, 15, 0, 10),
+                                  child: _getSongs(widget.songs))
                             ],
                           ))),
                 ),
