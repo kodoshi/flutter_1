@@ -58,8 +58,8 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage>
     size = MediaQuery.of(context).size;
     height = size.height;
     width = size.width;
-    final controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+    final controller = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 3200));
     final animation = Tween(
       begin: 0.0,
       end: 1.0,

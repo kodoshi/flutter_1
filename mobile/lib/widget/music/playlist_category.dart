@@ -13,7 +13,11 @@ class PlaylistCategory extends StatefulWidget {
   final List<Playlist> data;
   final TilesBloc tileBloc;
 
-  PlaylistCategory({Key? key, required this.name, required this.data, required this.tileBloc});
+  PlaylistCategory(
+      {Key? key,
+      required this.name,
+      required this.data,
+      required this.tileBloc});
 
   @override
   _PlaylistCategoryState createState() => _PlaylistCategoryState();
@@ -34,7 +38,7 @@ class _PlaylistCategoryState extends State<PlaylistCategory> {
                 Navigator.push(
                     context,
                     PageRouteBuilder(
-                        transitionDuration: Duration(milliseconds: 2000),
+                        transitionDuration: Duration(milliseconds: 1700),
                         transitionsBuilder:
                             (context, animation, secondaryAnimation, child) {
                           return FadeScaleTransition(
@@ -66,16 +70,19 @@ class _PlaylistCategoryState extends State<PlaylistCategory> {
     return Column(
       children: [
         Container(
-            padding: EdgeInsets.fromLTRB(
-                MediaQuery.of(context).size.width / 16, MediaQuery.of(context).size.height / 32, 0, 0),
+            padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width / 16,
+                MediaQuery.of(context).size.height / 32, 0, 0),
             width: MediaQuery.of(context).size.width,
             height: 70,
-            child: Text(getText(widget.name).toString(), style: TextStyle(fontSize: 30))),
+            child: Text(getText(widget.name).toString(),
+                style: TextStyle(fontSize: 30))),
         Container(
-            padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width / 16, 0, 0, 0),
+            padding: EdgeInsets.fromLTRB(
+                MediaQuery.of(context).size.width / 16, 0, 0, 0),
             width: MediaQuery.of(context).size.width,
             height: 30,
-            child: Text(getText(widget.name + 'Description').toString(), style: TextStyle(fontSize: 20))),
+            child: Text(getText(widget.name + 'Description').toString(),
+                style: TextStyle(fontSize: 20))),
         Container(
             child: SizedBox(
                 height: 180,
