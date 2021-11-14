@@ -13,7 +13,7 @@ Team members:
 
 ## Backend
 
-Commands to start the Nodejs server in backend folder:
+Commands to start the Nodejs server in /backend folder:
 
 `npm install`
 
@@ -25,7 +25,7 @@ A cloud mongo instance is being used at the moment.
 
 ## Mobile
 
-Commands to start the Flutter app in mobile folder:
+Commands to start the Flutter app in /mobile folder:
 
 `flutter pub get`
 
@@ -33,7 +33,7 @@ Commands to start the Flutter app in mobile folder:
 
 ## API routes
 
-##### More details can be found in the jsdoc annotations inside /backend/docs, db models also included below.
+#### More details can be found in the JSDOC annotations inside /backend/docs/index.html, db models also included below. A Postman collection is included in the /postman folder, it details routes, arguments and holds examples of responses.
 
   
 
