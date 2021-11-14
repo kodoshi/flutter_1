@@ -1,5 +1,6 @@
 import 'package:flutter_1/bloc/common/state.dart';
 import 'package:flutter_1/model/stats_chart_data.dart';
+
 import 'event.dart';
 
 abstract class StatState {

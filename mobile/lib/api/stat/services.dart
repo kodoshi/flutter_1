@@ -54,13 +54,9 @@ class StatServices implements StatRepo {
     Response response;
 
     try {
-      response = await http.put(uri, headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }, body: {
-        'day': day,
-        'category': category,
-        'playtime': playtime.toString()
-      });
+      response = await http.put(uri,
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: {'day': day, 'category': category, 'playtime': playtime.toString()});
     } on SocketException catch (e) {
       if (e.osError!.message == "Network is unreachable")
         throw NetworkException();

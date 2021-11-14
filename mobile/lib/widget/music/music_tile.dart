@@ -1,6 +1,6 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter_1/bloc/stat/bloc.dart';
 import 'package:flutter_1/bloc/stat/event.dart';
 import 'package:flutter_1/bloc/tile/bloc.dart';
@@ -54,8 +54,7 @@ class _MusicTileState extends State<MusicTile> {
               title: widget.metaTitle,
               artist: widget.metaArtist,
               album: widget.metaAlbum,
-              image: MetasImage.asset(
-                  widget.imageName), //can be MetasImage.network
+              image: MetasImage.asset(widget.imageName), //can be MetasImage.network
             )),
         autoStart: false,
         showNotification: true);
@@ -81,8 +80,7 @@ class _MusicTileState extends State<MusicTile> {
             clipBehavior: Clip.antiAliasWithSaveLayer,
             elevation: 2,
             shape: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: BorderSide(color: Colors.black, width: 0)),
+                borderRadius: BorderRadius.circular(20), borderSide: BorderSide(color: Colors.black, width: 0)),
           ),
           Positioned(
             top: 8,
@@ -107,10 +105,7 @@ class _MusicTileState extends State<MusicTile> {
               right: 0,
               child: ElevatedButton(
                 child: Icon(Icons.delete_forever_outlined),
-                onPressed: () => {
-                  widget.tileBloc.tileEventSink
-                      .add(TileDeleteEvent(id: widget.id))
-                },
+                onPressed: () => {widget.tileBloc.tileEventSink.add(TileDeleteEvent(id: widget.id))},
                 style: ElevatedButton.styleFrom(
                   primary: Colors.black54,
                   shape: CircleBorder(),
@@ -119,8 +114,7 @@ class _MusicTileState extends State<MusicTile> {
           Positioned(
             bottom: 14,
             left: 20,
-            child: Text(widget.metaTitle,
-                style: TextStyle(fontSize: 15, color: Colors.white)),
+            child: Text(widget.metaTitle, style: TextStyle(fontSize: 15, color: Colors.white)),
           ),
         ],
       ),
@@ -141,7 +135,9 @@ class _MusicTileState extends State<MusicTile> {
         7: "Sunday"
       };
       widget.statBloc.statEventSink.add(StatAddEvent(
-          day: dayMap[DateTime.now().weekday] ?? "Monday", category: widget.category.toLowerCase(), playtime: audioPlayer.currentPosition.value.inSeconds));
+          day: dayMap[DateTime.now().weekday] ?? "Monday",
+          category: widget.category.toLowerCase(),
+          playtime: audioPlayer.currentPosition.value.inSeconds));
       audioPlayer.stop();
     }
   }

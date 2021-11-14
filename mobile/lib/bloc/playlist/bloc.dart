@@ -1,8 +1,10 @@
 import 'dart:async';
+
 import 'package:flutter_1/api/exceptions.dart';
 import 'package:flutter_1/api/playlist/services.dart';
 import 'package:flutter_1/bloc/playlist/state.dart';
 import 'package:flutter_1/model/playlist.dart';
+
 import 'event.dart';
 
 class PlaylistsBloc {
@@ -36,12 +38,10 @@ class PlaylistsBloc {
 
       return PlaylistLoadedState(playlists: list);
     } on CustomException catch (e) {
-      return PlaylistErrorState(
-          event: event, title: e.title, message: e.message);
+      return PlaylistErrorState(event: event, title: e.title, message: e.message);
     } on Exception {
       var e = UnknownError();
-      return PlaylistErrorState(
-          event: event, title: e.title, message: e.message);
+      return PlaylistErrorState(event: event, title: e.title, message: e.message);
     }
   }
 

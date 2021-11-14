@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_1/api/stat/services.dart';
 import 'package:flutter_1/api/tile/services.dart';
+import 'package:flutter_1/bloc/common/state.dart';
 import 'package:flutter_1/bloc/stat/bloc.dart';
 import 'package:flutter_1/bloc/tile/bloc.dart';
 import 'package:flutter_1/bloc/tile/event.dart';
 import 'package:flutter_1/bloc/tile/state.dart';
-import 'package:flutter_1/widget/footer.dart';
 import 'package:flutter_1/utils/globalVars.dart';
+import 'package:flutter_1/widget/error/alert_error.dart';
+import 'package:flutter_1/widget/footer.dart';
 import 'package:flutter_1/widget/music/music_tile.dart';
 
 /// this page will contain all the active playlists and audio players,
@@ -17,8 +19,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   final _tileBloc = TilesBloc(repository: TileServices());
   final _statBloc = StatsBloc(repository: StatServices());
 
@@ -64,43 +65,31 @@ class _HomePageState extends State<HomePage>
                         ))
                     : GridView.builder(
                         padding: const EdgeInsets.all(25),
-                        gridDelegate:
-                            const SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 250,
-                                childAspectRatio: 1,
-                                crossAxisSpacing: 25,
-                                mainAxisSpacing: 25),
+                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 250, childAspectRatio: 1, crossAxisSpacing: 25, mainAxisSpacing: 25),
                         itemCount: data.tiles.length,
                         itemBuilder: (BuildContext ctx, index) {
                           return Container(
                             alignment: Alignment.center,
                             child: MusicTile(
-                                index: data.tiles[index].index,
-                                id: data.tiles[index].id,
-                                trackName: data.tiles[index].songs[0],
-                                imageName: data.tiles[index].image,
-                                metaTitle: data.tiles[index].metaTitle,
-                                metaArtist: data.tiles[index].metaArtist,
-                                metaAlbum: data.tiles[index].metaAlbum,
-                                category: data.tiles[index].category,
-                                tileBloc: _tileBloc,
-                                statBloc: _statBloc,
+                              index: data.tiles[index].index,
+                              id: data.tiles[index].id,
+                              trackName: data.tiles[index].songs[0],
+                              imageName: data.tiles[index].image,
+                              metaTitle: data.tiles[index].metaTitle,
+                              metaArtist: data.tiles[index].metaArtist,
+                              metaAlbum: data.tiles[index].metaAlbum,
+                              category: data.tiles[index].category,
+                              tileBloc: _tileBloc,
+                              statBloc: _statBloc,
                             ),
                           );
                         });
               } else if (snapshot.data is TileErrorState) {
                 TileErrorState error = snapshot.data as TileErrorState;
-                return AlertDialog(
-                  title: Text(error.title),
-                  content: Text(error.message),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          _tileBloc.tileEventSink.add(error.event);
-                        },
-                        child: Text("Refresh"))
-                  ],
-                );
+                return AlertError(
+                    error: error,
+                    callback: (ErrorState error) => _tileBloc.tileEventSink.add(error.event as TileEvent));
               } else {
                 return Center(
                   child: CircularProgressIndicator(),

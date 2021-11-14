@@ -1,12 +1,13 @@
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
+
+import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_1/utils/globalVars.dart';
 import 'package:flutter_1/widget/footer.dart';
 import 'package:flutter_1/widget/icon/icon_widget.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
-import 'package:flutter_1/utils/globalVars.dart';
 
 /// this page is responsible for showing the personal details of the user,
 /// as well as offering some graphical settings, like language switch or dark theme switch
@@ -45,9 +46,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Container(
                     height: 140,
                     width: 150,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(17)),
+                    decoration:
+                        BoxDecoration(color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(17)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -88,14 +88,11 @@ class _ProfilePageState extends State<ProfilePage> {
               height: 250,
               width: 350,
               padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-              decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(17)),
+              decoration: BoxDecoration(color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(17)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(getText('personalInformation').toString(),
-                      style: TextStyle(color: Colors.white, fontSize: 23)),
+                  Text(getText('personalInformation').toString(), style: TextStyle(color: Colors.white, fontSize: 23)),
                   Row(
                     children: [
                       Text(getText('firstName').toString() + ': Marine',
@@ -116,9 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   Row(
                     children: [
-                      Text(
-                          getText('email').toString() +
-                              ': marine.lepen@test.com',
+                      Text(getText('email').toString() + ': marine.lepen@test.com',
                           style: TextStyle(color: Colors.white, fontSize: 20)),
                     ],
                   )
@@ -140,9 +135,7 @@ class _ProfilePageState extends State<ProfilePage> {
   /// custom widget to build the settings tile responsible for Language Switch
   Widget buildLanguage() => DropDownSettingsTile(
         tileColor: Theme.of(context).backgroundColor,
-        leading: IconWidget(
-            icon: Icons.translate_rounded,
-            color: Theme.of(context).accentColor),
+        leading: IconWidget(icon: Icons.translate_rounded, color: Theme.of(context).accentColor),
         settingKey: 'key-language',
         title: getText('language').toString(),
         selected: 1,
@@ -161,8 +154,7 @@ class _ProfilePageState extends State<ProfilePage> {
         tileColor: Theme.of(context).backgroundColor,
         settingKey: 'key-dark-mode',
         title: getText('darkTheme').toString(),
-        leading: IconWidget(
-            icon: Icons.dark_mode, color: Theme.of(context).accentColor),
+        leading: IconWidget(icon: Icons.dark_mode, color: Theme.of(context).accentColor),
         onChange: (isDarkMode) {
           EasyDynamicTheme.of(context).changeTheme();
           setState(() {});

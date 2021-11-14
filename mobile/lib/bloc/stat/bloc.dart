@@ -1,8 +1,10 @@
 import 'dart:async';
+
 import 'package:flutter_1/api/exceptions.dart';
 import 'package:flutter_1/api/stat/services.dart';
 import 'package:flutter_1/bloc/stat/state.dart';
 import 'package:flutter_1/model/stats_chart_data.dart';
+
 import 'event.dart';
 
 class StatsBloc {

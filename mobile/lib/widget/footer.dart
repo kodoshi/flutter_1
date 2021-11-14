@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_1/page/home_page.dart';
-import 'package:flutter_1/page/profile_page.dart';
-import 'package:flutter_1/page/playlists_page.dart';
 import 'package:flutter_1/page/community_page.dart';
+import 'package:flutter_1/page/home_page.dart';
+import 'package:flutter_1/page/playlists_page.dart';
+import 'package:flutter_1/page/profile_page.dart';
 import 'package:flutter_1/page/user_statistics.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 
@@ -11,8 +11,21 @@ import 'package:flutter_1/utils/globalVars.dart';
 class Footer extends StatelessWidget {
   final String? page;
 
-  final indexArray = ["home", "playlists", "community", "statistics", "profile",];
-  final redirectArray = [HomePage(), PlaylistsPage(), CommunityPage(), UserStatisticsPage(), ProfilePage(),];
+  final indexArray = [
+    "home",
+    "playlists",
+    "community",
+    "statistics",
+    "profile",
+  ];
+  final redirectArray = [
+    HomePage(),
+    PlaylistsPage(),
+    CommunityPage(),
+    UserStatisticsPage(),
+    ProfilePage(),
+  ];
+
   Footer({this.page});
 
   @override
@@ -28,8 +41,7 @@ class Footer extends StatelessWidget {
       selectedItemColor: Theme.of(context).accentColor,
       unselectedItemColor: Colors.black,
       items: [
-        new BottomNavigationBarItem(
-            icon: Icon(Icons.home), label: getText('home').toString()),
+        new BottomNavigationBarItem(icon: Icon(Icons.home), label: getText('home').toString()),
         new BottomNavigationBarItem(
           icon: Icon(Icons.library_music_outlined),
           label: getText('playlists').toString(),
