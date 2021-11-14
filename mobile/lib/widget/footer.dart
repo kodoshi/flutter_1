@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_1/page/home_page.dart';
 import 'package:flutter_1/page/profile_page.dart';
@@ -11,17 +12,42 @@ import 'package:flutter_1/utils/globalVars.dart';
 class Footer extends StatelessWidget {
   final String? page;
 
-  final indexArray = ["home", "playlists", "community", "statistics", "profile",];
-  final redirectArray = [HomePage(), PlaylistsPage(), CommunityPage(), UserStatisticsPage(), ProfilePage(),];
+  final indexArray = [
+    "home",
+    "playlists",
+    "community",
+    "statistics",
+    "profile",
+  ];
+  final redirectArray = [
+    HomePage(),
+    PlaylistsPage(),
+    CommunityPage(),
+    UserStatisticsPage(),
+    ProfilePage(),
+  ];
   Footer({this.page});
 
   @override
   Widget build(BuildContext context) {
     void handleRedirectFooter(int index) {
       Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => redirectArray[index]),
-      );
+          context,
+          PageRouteBuilder(
+            transitionDuration: Duration(milliseconds: 1700),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeThroughTransition(
+                  animation: animation,
+                  secondaryAnimation: secondaryAnimation,
+                  child: child);
+            },
+            pageBuilder: (context, animation, secondaryAnimation) {
+              return redirectArray[index];
+            },
+          )
+          //MaterialPageRoute(builder: (context) => redirectArray[index]),
+          );
     }
 
     return BottomNavigationBar(

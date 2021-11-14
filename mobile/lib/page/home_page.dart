@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_1/api/stat/services.dart';
@@ -75,16 +76,16 @@ class _HomePageState extends State<HomePage>
                           return Container(
                             alignment: Alignment.center,
                             child: MusicTile(
-                                index: data.tiles[index].index,
-                                id: data.tiles[index].id,
-                                trackName: data.tiles[index].songs[0],
-                                imageName: data.tiles[index].image,
-                                metaTitle: data.tiles[index].metaTitle,
-                                metaArtist: data.tiles[index].metaArtist,
-                                metaAlbum: data.tiles[index].metaAlbum,
-                                category: data.tiles[index].category,
-                                tileBloc: _tileBloc,
-                                statBloc: _statBloc,
+                              index: data.tiles[index].index,
+                              id: data.tiles[index].id,
+                              trackName: data.tiles[index].songs[0],
+                              imageName: data.tiles[index].image,
+                              metaTitle: data.tiles[index].metaTitle,
+                              metaArtist: data.tiles[index].metaArtist,
+                              metaAlbum: data.tiles[index].metaAlbum,
+                              category: data.tiles[index].category,
+                              tileBloc: _tileBloc,
+                              statBloc: _statBloc,
                             ),
                           );
                         });

@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_1/bloc/tile/bloc.dart';
@@ -36,17 +37,25 @@ class _PlaylistCategoryState extends State<PlaylistCategory> {
               onTap: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => SpecificPlaylistPage(
-                              id: item.id,
-                              index: item.index,
-                              songs: item.songs,
-                              name: item.metaTitle,
-                              imageName: item.image,
-                              category: item.category,
-                              description: item.description,
-                              tileBloc: widget.tileBloc,
-                            )));
+                    PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 2000),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return FadeScaleTransition(
+                              animation: animation, child: child);
+                        },
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return SpecificPlaylistPage(
+                            id: item.id,
+                            index: item.index,
+                            songs: item.songs,
+                            name: item.metaTitle,
+                            imageName: item.image,
+                            category: item.category,
+                            description: item.description,
+                            tileBloc: widget.tileBloc,
+                          );
+                        }));
               },
               child: MinimalMusicTile(
                 imageName: item.image,
