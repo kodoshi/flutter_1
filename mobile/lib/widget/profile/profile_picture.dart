@@ -33,9 +33,7 @@ class ProfilePictureWidget extends StatelessWidget {
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: AssetImage(
-                                  'assets/images/street-japan-night.jpg')))),
+                              fit: BoxFit.fill, image: AssetImage('assets/images/street-japan-night.jpg')))),
                 ),
               ],
               series: <CircularSeries>[
@@ -49,11 +47,11 @@ class ProfilePictureWidget extends StatelessWidget {
                 ),
               ],
               legend: Legend(
-                  isVisible: true,
-                  overflowMode: LegendItemOverflowMode.wrap,
-                  position: LegendPosition.bottom,
-                  textStyle: TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
-                  toggleSeriesVisibility: false,
+                isVisible: true,
+                overflowMode: LegendItemOverflowMode.wrap,
+                position: LegendPosition.bottom,
+                textStyle: TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
+                toggleSeriesVisibility: false,
               ),
             ))));
   }

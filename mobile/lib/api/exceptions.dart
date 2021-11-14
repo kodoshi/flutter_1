@@ -1,23 +1,34 @@
-class NoInternetException {
-  var message;
+abstract class CustomException implements Exception {
+  final String title;
+  final String message;
 
-  NoInternetException(this.message);
+  CustomException({required this.title, required this.message});
 }
 
-class NoServiceFoundException {
-  var message;
+class NetworkException implements CustomException {
+  final String title = "Network Error";
+  final String message = "A network error occurred";
 
-  NoServiceFoundException(this.message);
+  NetworkException();
 }
 
-class InvalidFormatException {
-  var message;
+class ApiException implements CustomException {
+  final String title = "API Error";
+  final String message = "An API error occurred";
 
-  InvalidFormatException(this.message);
+  ApiException();
 }
 
-class UnknownException {
-  var message;
+class DataException implements CustomException {
+  final String title = "Data Error";
+  final String message = "Full record data is not available";
 
-  UnknownException(this.message);
+  DataException();
+}
+
+class UnknownError implements CustomException {
+  final String title = "Unknown Error";
+  final String message = "An unknown error occurred";
+
+  UnknownError();
 }

@@ -2,25 +2,25 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_1/api/common/services.dart';
-import 'package:flutter_1/model/stats_chart_data.dart';
+import 'package:flutter_1/model/profile.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
 import '../exceptions.dart';
 
-abstract class StatRepo {
-  Future<List<StatsChartData>> getStats();
+abstract class ProfileRepo {
+  Future<Profile> getProfile();
 
-  Future<void> addStat(String day, String category, int playtime);
+  Future<void> updateImage(String image);
 }
 
-class StatServices implements StatRepo {
-  static const String _GET_STATS = '/user/stats';
-  static const String _PUT_STATS = '/user/stats';
+class ProfileServices implements ProfileRepo {
+  static const String _GET_PROFILE = '/user/personal';
+  static const String _POST_PROFILE = '/user/picture';
 
   @override
-  Future<List<StatsChartData>> getStats() async {
-    Uri uri = Uri.parse(ApiUrl.url + _GET_STATS);
+  Future<Profile> getProfile() async {
+    Uri uri = Uri.parse(ApiUrl.url + _GET_PROFILE);
     Response response;
 
     try {
@@ -36,27 +36,26 @@ class StatServices implements StatRepo {
 
     if (response.statusCode != 200) throw DataException();
 
-    List<StatsChartData> stats;
-    try {
-      final Map<String, dynamic> json = jsonDecode(response.body);
+    Profile profile;
 
-      stats = statsFromJson(jsonEncode(json["stats"]));
+    try {
+      profile = Profile.fromJson(jsonDecode(response.body));
     } on Exception {
       throw DataException();
     }
-    return stats;
+
+    return profile;
   }
 
   @override
-  Future<void> addStat(String day, String category, int playtime) async {
-    Uri uri = Uri.parse(ApiUrl.url + _PUT_STATS);
+  Future<void> updateImage(String image) async {
+    Uri uri = Uri.parse(ApiUrl.url + _POST_PROFILE);
 
     Response response;
 
     try {
-      response = await http.put(uri,
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          body: {'day': day, 'category': category, 'playtime': playtime.toString()});
+      response =
+          await http.post(uri, headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: {'image': image});
     } on SocketException catch (e) {
       if (e.osError!.message == "Network is unreachable")
         throw NetworkException();

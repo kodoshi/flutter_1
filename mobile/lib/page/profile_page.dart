@@ -1,12 +1,18 @@
 import 'dart:io';
-import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_1/widget/footer.dart';
-import 'package:flutter_1/widget/icon/icon_widget.dart';
-import 'package:flutter_settings_screens/flutter_settings_screens.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
+import 'package:flutter_1/api/profile/services.dart';
+import 'package:flutter_1/bloc/common/state.dart';
+import 'package:flutter_1/bloc/profile/bloc.dart';
+import 'package:flutter_1/bloc/profile/event.dart';
+import 'package:flutter_1/bloc/profile/state.dart';
 import 'package:flutter_1/utils/globalVars.dart';
+import 'package:flutter_1/widget/error/alert_error.dart';
+import 'package:flutter_1/widget/footer.dart';
+import 'package:flutter_1/widget/profile/language.dart';
+import 'package:flutter_1/widget/profile/nightmode.dart';
+import 'package:flutter_1/widget/profile/picture.dart';
+import 'package:flutter_1/widget/profile/user_information.dart';
 
 /// this page is responsible for showing the personal details of the user,
 /// as well as offering some graphical settings, like language switch or dark theme switch
@@ -18,6 +24,16 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   File? photoTaken;
   String? base64Image;
+  String? name;
+  String? surname;
+  String? email;
+  final _profileBloc = ProfilesBloc(repository: ProfileServices());
+
+  @override
+  void initState() {
+    super.initState();
+    _profileBloc.profileEventSink.add(ProfileGetEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,156 +46,53 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    pickImageFromCamera(context: context);
-                  },
-                  child: Container(
-                    height: 140,
-                    width: 150,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(17)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        photoTaken == null
-                            ? Icon(
-                                Icons.account_circle,
-                                size: 80,
-                                color: Theme.of(context).canvasColor,
-                              )
-                            : Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: Image.file(photoTaken!).image,
-                                  ),
-                                ),
-                                height: 100,
-                                width: 100,
-                              ),
-                        Align(
-                          alignment: FractionalOffset.bottomCenter,
-                          child: Text(
-                            getText('tapToAdd').toString(),
-                            style: TextStyle(color: Colors.white, fontSize: 14),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              height: 250,
-              width: 350,
-              padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-              decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(17)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: StreamBuilder(
+          stream: _profileBloc.profile,
+          initialData: ProfileInitState(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            print(snapshot.data.toString());
+            if (snapshot.data is ProfileLoadedState) {
+              ProfileLoadedState data = snapshot.data as ProfileLoadedState;
+
+              return Column(
                 children: [
-                  Text(getText('personalInformation').toString(),
-                      style: TextStyle(color: Colors.white, fontSize: 23)),
-                  Row(
-                    children: [
-                      Text(getText('firstName').toString() + ': Marine',
-                          style: TextStyle(color: Colors.white, fontSize: 20)),
-                    ],
+                  SizedBox(
+                    height: 20,
                   ),
-                  Row(
-                    children: [
-                      Text(getText('lastName').toString() + ': Lepen',
-                          style: TextStyle(color: Colors.white, fontSize: 20)),
-                    ],
+                  Center(
+                    child: Picture(image: data.profile.image, profileBloc: _profileBloc),
                   ),
-                  Row(
-                    children: [
-                      Text(getText('username').toString() + ': lamarinade',
-                          style: TextStyle(color: Colors.white, fontSize: 20)),
-                    ],
+                  SizedBox(
+                    height: 20,
                   ),
-                  Row(
-                    children: [
-                      Text(
-                          getText('email').toString() +
-                              ': marine.lepen@test.com',
-                          style: TextStyle(color: Colors.white, fontSize: 20)),
-                    ],
-                  )
+                  UserInformation(profile: data.profile),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Language(),
+                  NightMode(),
                 ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            buildLanguage(),
-            buildDarkMode(),
-          ],
+              );
+            } else if (snapshot.data is ProfileErrorState) {
+              ProfileErrorState error = snapshot.data as ProfileErrorState;
+              return AlertError(
+                  error: error,
+                  callback: (ErrorState error) => _profileBloc.profileEventSink.add(error.event as ProfileEvent));
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
         ),
       ),
       bottomNavigationBar: new Footer(page: "profile"),
     );
   }
 
-  /// custom widget to build the settings tile responsible for Language Switch
-  Widget buildLanguage() => DropDownSettingsTile(
-        tileColor: Theme.of(context).backgroundColor,
-        leading: IconWidget(
-            icon: Icons.translate_rounded,
-            color: Theme.of(context).accentColor),
-        settingKey: 'key-language',
-        title: getText('language').toString(),
-        selected: 1,
-        values: <int, String>{
-          1: 'English',
-          2: 'Français',
-        },
-        onChange: (language) {
-          translation = Settings.getValue<int>('key-language', 1);
-          setState(() {});
-        },
-      );
-
-  /// custom widget to build the settings tile responsible for Dark Theme Switch
-  Widget buildDarkMode() => SwitchSettingsTile(
-        tileColor: Theme.of(context).backgroundColor,
-        settingKey: 'key-dark-mode',
-        title: getText('darkTheme').toString(),
-        leading: IconWidget(
-            icon: Icons.dark_mode, color: Theme.of(context).accentColor),
-        onChange: (isDarkMode) {
-          EasyDynamicTheme.of(context).changeTheme();
-          setState(() {});
-        },
-      );
-
-  /// async function taking care of image upload through camera
-  Future pickImageFromCamera({
-    required BuildContext context,
-  }) async {
-    final imagePicker = ImagePicker();
-    final image = await imagePicker.pickImage(source: ImageSource.camera);
-    setState(() {
-      photoTaken = File(image!.path);
-
-      //send base64Image to POST /user/picture , inside req.body.image
-      base64Image = base64Encode(photoTaken!.readAsBytesSync());
-    });
+  @override
+  void dispose() {
+    _profileBloc.dispose();
+    super.dispose();
   }
 }

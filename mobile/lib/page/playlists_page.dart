@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_1/api/playlist/services.dart';
 import 'package:flutter_1/api/tile/services.dart';
+import 'package:flutter_1/bloc/common/state.dart';
 import 'package:flutter_1/bloc/playlist/bloc.dart';
 import 'package:flutter_1/bloc/playlist/event.dart';
 import 'package:flutter_1/bloc/playlist/state.dart';
 import 'package:flutter_1/bloc/tile/bloc.dart';
 import 'package:flutter_1/utils/globalVars.dart';
+import 'package:flutter_1/widget/error/alert_error.dart';
 import 'package:flutter_1/widget/footer.dart';
 import 'package:flutter_1/widget/music/playlist_category.dart';
 
@@ -43,12 +45,10 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
           child: StreamBuilder(
               stream: _playlistBloc.playlists,
               initialData: PlaylistInitState(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<PlaylistState> snapshot) {
+              builder: (BuildContext context, AsyncSnapshot<PlaylistState> snapshot) {
                 if (snapshot.data is PlaylistLoadedState) {
                   PlaylistLoadedState data = snapshot.data as PlaylistLoadedState;
                   return ListView(
-
                     children: <Widget>[
                       PlaylistCategory(name: "instrumental", data: data.playlists, tileBloc: _tileBloc),
                       PlaylistCategory(name: "nature", data: data.playlists, tileBloc: _tileBloc),
@@ -56,19 +56,11 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                     ],
                   );
                 } else if (snapshot.data is PlaylistErrorState) {
-                  PlaylistErrorState error =
-                      snapshot.data as PlaylistErrorState;
-                  return AlertDialog(
-                    title: Text("API Error"),
-                    content: Text(error.message),
-                    actions: [
-                      TextButton(
-                          onPressed: () {
-                            _playlistBloc.playlistEventSink.add(error.event);
-                          },
-                          child: Text("Refresh"))
-                    ],
-                  );
+                  PlaylistErrorState error = snapshot.data as PlaylistErrorState;
+                  return AlertError(
+                      error: error,
+                      callback: (ErrorState error) =>
+                          _playlistBloc.playlistEventSink.add(error.event as PlaylistEvent));
                 } else {
                   return Center(
                     child: CircularProgressIndicator(),

@@ -13,6 +13,5 @@ class StatAddEvent extends StatEvent {
   final String category;
   final int playtime;
 
-  const StatAddEvent(
-      {required this.day, required this.category, required this.playtime});
+  const StatAddEvent({required this.day, required this.category, required this.playtime});
 }

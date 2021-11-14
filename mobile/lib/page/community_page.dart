@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_1/widget/footer.dart';
-import 'package:flutter_1/widget/music/music_tile.dart';
-import 'package:flutter_1/widget/music/minimal_music_tile.dart';
+import 'package:flutter_1/api/playlist/services.dart';
+import 'package:flutter_1/bloc/common/state.dart';
+import 'package:flutter_1/bloc/playlist/bloc.dart';
+import 'package:flutter_1/bloc/playlist/event.dart';
+import 'package:flutter_1/bloc/playlist/state.dart';
+import 'package:flutter_1/model/playlist.dart';
 import 'package:flutter_1/utils/globalVars.dart';
+import 'package:flutter_1/widget/community/category_button.dart';
+import 'package:flutter_1/widget/error/alert_error.dart';
+import 'package:flutter_1/widget/footer.dart';
+import 'package:flutter_1/widget/music/minimal_music_tile.dart';
 
 /// this page contains the most liked and played playlists from the user community
 /// at the moment has mostly placeholders since this info is needed from the backend
@@ -13,6 +20,22 @@ class CommunityPage extends StatefulWidget {
 
 class _CommunityPageState extends State<CommunityPage> {
   var size, height, width;
+  final _playlistBloc = PlaylistsBloc(repository: PlaylistServices());
+
+  List<Widget> _buildMinimalTiles(List<Playlist> playlists) {
+    return List<Widget>.from(playlists
+        .map((item) => MinimalMusicTile(
+              imageName: item.image,
+              metaTitle: item.metaTitle,
+            ))
+        .toList());
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _playlistBloc.playlistEventSink.add(PlaylistGetEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +56,7 @@ class _CommunityPageState extends State<CommunityPage> {
                 padding: EdgeInsets.fromLTRB(width / 16, height / 16, 0, 0),
                 width: width,
                 height: 100,
-                child: Text(getText('communityFavorites').toString(),
-                    style: TextStyle(fontSize: 30))),
+                child: Text(getText('communityFavorites').toString(), style: TextStyle(fontSize: 30))),
             Container(
                 child: Align(
               alignment: Alignment.topLeft,
@@ -44,97 +66,53 @@ class _CommunityPageState extends State<CommunityPage> {
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
                     children: <Widget>[
-                      Container(
-                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: ElevatedButton(
-                              onPressed: () {},
-                              child: const Text('Pop Music'),
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          (Theme.of(context).cardColor)),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18.0)))))),
-                      Container(
-                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: ElevatedButton(
-                              onPressed: () {},
-                              child: const Text('Rock'),
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          (Theme.of(context).cardColor)),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18.0)))))),
-                      Container(
-                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: ElevatedButton(
-                              onPressed: () {},
-                              child: const Text('Hip Hop'),
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          (Theme.of(context).cardColor)),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18.0)))))),
-                      Container(
-                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: ElevatedButton(
-                              onPressed: () {},
-                              child: const Text('Summer'),
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          (Theme.of(context).cardColor)),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18.0)))))),
+                      CategoryButton(category: "Pop"),
+                      CategoryButton(category: "Nature"),
+                      CategoryButton(category: "Instrumental"),
                     ],
                   )),
             )),
-            Container(
-                child: SizedBox(
-                    height: 200,
-                    child: GridView.count(
-                      //primary: false,
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.all(25),
-                      crossAxisSpacing: 12.5,
-                      mainAxisSpacing: 12.5,
-                      crossAxisCount: 1,
-                      children: <Widget>[
-                        MinimalMusicTile(
-                          imageName: 'assets/images/street-japan-night.jpg',
-                          metaTitle: 'Lo-Fi',
-                        ),
-                        MinimalMusicTile(
-                          imageName: 'assets/images/street-japan-night.jpg',
-                          metaTitle: 'Lo-Fi',
-                        ),
-                        MinimalMusicTile(
-                          imageName: 'assets/images/street-japan-night.jpg',
-                          metaTitle: 'Lo-Fi',
-                        ),
-                        MinimalMusicTile(
-                          imageName: 'assets/images/street-japan-night.jpg',
-                          metaTitle: 'Lo-Fi',
-                        ),
-                      ],
-                    ))),
+            StreamBuilder(
+              stream: _playlistBloc.playlists,
+              initialData: PlaylistInitState(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.data is PlaylistLoadedState) {
+                  PlaylistLoadedState data = snapshot.data as PlaylistLoadedState;
+
+                  return Container(
+                      child: SizedBox(
+                          height: 200,
+                          child: GridView.count(
+                            //primary: false,
+                            scrollDirection: Axis.horizontal,
+                            padding: const EdgeInsets.all(25),
+                            crossAxisSpacing: 12.5,
+                            mainAxisSpacing: 12.5,
+                            crossAxisCount: 1,
+                            children: _buildMinimalTiles(data.playlists),
+                          )));
+                } else if (snapshot.data is PlaylistErrorState) {
+                  PlaylistErrorState error = snapshot.data as PlaylistErrorState;
+                  return AlertError(
+                      error: error,
+                      callback: (ErrorState error) =>
+                          _playlistBloc.playlistEventSink.add(error.event as PlaylistEvent));
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            ),
           ],
         ),
         backgroundColor: Theme.of(context).backgroundColor,
         bottomNavigationBar: new Footer(page: "community"));
+  }
+
+  @override
+  void dispose() {
+    _playlistBloc.dispose();
+    super.dispose();
   }
 }

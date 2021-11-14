@@ -1,12 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_1/api/stat/services.dart';
+import 'package:flutter_1/bloc/common/state.dart';
 import 'package:flutter_1/bloc/stat/bloc.dart';
 import 'package:flutter_1/bloc/stat/event.dart';
 import 'package:flutter_1/bloc/stat/state.dart';
 import 'package:flutter_1/model/stats_chart_data.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_1/utils/globalVars.dart';
+import 'package:flutter_1/widget/error/alert_error.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 /// class used by the UserStatistics page, holds the graph data and does the graph rendering
 class CartesianChartWidget extends StatefulWidget {
@@ -36,8 +38,7 @@ class _CartesianChartWidgetState extends State<CartesianChartWidget> {
           return SfCartesianChart(
             plotAreaBorderWidth: 0,
             enableSideBySideSeriesPlacement: false,
-            title: ChartTitle(
-                text: getText('listeningTime').toString()),
+            title: ChartTitle(text: getText('listeningTime').toString()),
             primaryXAxis: CategoryAxis(
               majorGridLines: const MajorGridLines(width: 0),
             ),
@@ -81,17 +82,8 @@ class _CartesianChartWidgetState extends State<CartesianChartWidget> {
           );
         } else if (snapshot.data is StatErrorState) {
           StatErrorState error = snapshot.data as StatErrorState;
-          return AlertDialog(
-            title: Text("API Error"),
-            content: Text(error.message),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    _statBloc.statEventSink.add(error.event);
-                  },
-                  child: Text("Refresh"))
-            ],
-          );
+          return AlertError(
+              error: error, callback: (ErrorState error) => _statBloc.statEventSink.add(error.event as StatEvent));
         } else {
           return Center(
             child: CircularProgressIndicator(),

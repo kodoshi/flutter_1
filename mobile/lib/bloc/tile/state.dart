@@ -30,7 +30,8 @@ class TileDeletedState extends TileState {
 
 class TileErrorState extends TileState implements ErrorState {
   final TileEvent event;
+  final String title;
   final String message;
 
-  const TileErrorState({required this.event, required this.message});
+  const TileErrorState({required this.event, required this.title, required this.message});
 }

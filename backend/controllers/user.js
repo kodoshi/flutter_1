@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const fs = require("fs");
 const SingleDayStat = require("../models/single_day_stat");
 
 //saves us headaches by enabling the usage of findByIdAndUpdate
@@ -21,6 +22,7 @@ exports.getAllActiveTiles = (req, res) => {
           error: err,
         });
       }
+      
       return res.status(200).json(tiles);
     });
 };
@@ -108,6 +110,10 @@ exports.getStats = (req, res) => {
         return res.status(400).json({
           error: err,
         });
+      }
+      if(stats.stats.length==0)
+      {
+        return res.status(300).json({ message: "Stats array empty" });
       }
       return res.status(200).json(stats);
     });

@@ -1,14 +1,17 @@
 import 'dart:async';
+
+import 'package:flutter_1/api/exceptions.dart';
 import 'package:flutter_1/api/playlist/services.dart';
 import 'package:flutter_1/bloc/playlist/state.dart';
 import 'package:flutter_1/model/playlist.dart';
-import 'event.dart';
 
+import 'event.dart';
 
 class PlaylistsBloc {
   PlaylistRepo repository;
 
   final _playlistStateController = StreamController<PlaylistState>();
+
   StreamSink<PlaylistState> get _inPlaylists => _playlistStateController.sink;
 
   Stream<PlaylistState> get playlists => _playlistStateController.stream;
@@ -34,11 +37,11 @@ class PlaylistsBloc {
       final List<Playlist> list = await repository.getPlaylists();
 
       return PlaylistLoadedState(playlists: list);
-    } on Exception catch (e) {
-      return PlaylistErrorState(
-          event: event,
-          message: e.toString()
-      );
+    } on CustomException catch (e) {
+      return PlaylistErrorState(event: event, title: e.title, message: e.message);
+    } on Exception {
+      var e = UnknownError();
+      return PlaylistErrorState(event: event, title: e.title, message: e.message);
     }
   }
 

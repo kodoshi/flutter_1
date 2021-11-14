@@ -99,21 +99,22 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage>
               margin: EdgeInsets.fromLTRB(0, 20, 0, 15),
               child: Divider(color: Colors.blueGrey)),
           Container(
-              margin: EdgeInsets.fromLTRB(80, 0, 80, 0),
-              child: ElevatedButton(
-                  onPressed: () {
-                    widget.tileBloc.tileEventSink
-                        .add(TileAddEvent(id: widget.id));
-                    // specificPlaylistInfo instance is updated in Playlists screen, right before this page is loaded,
-                    // Through that instance we can track which Tile is needed to be added to the Home screen through globalTiles
-                  },
-                  child: Text(getText('addHome').toString()),
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          (Theme.of(context).cardColor)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0)))))),
+            margin: EdgeInsets.fromLTRB(80, 0, 80, 0),
+            child: ElevatedButton(
+              onPressed: () {
+                widget.tileBloc.tileEventSink.add(TileAddEvent(id: widget.id));
+                // specificPlaylistInfo instance is updated in Playlists screen, right before this page is loaded,
+                // Through that instance we can track which Tile is needed to be added to the Home screen through globalTiles
+              },
+              child: Text(getText('addHome').toString()),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      (Theme.of(context).cardColor)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0)))),
+            ),
+          ),
           Container(
               padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
               margin: EdgeInsets.fromLTRB(0, 15, 0, 15),

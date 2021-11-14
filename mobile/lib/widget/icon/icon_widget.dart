@@ -13,7 +13,7 @@ class IconWidget extends StatelessWidget {
       padding: EdgeInsets.all(6),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color:color,
+        color: color,
       ),
       child: Icon(icon, color: Colors.white),
     );

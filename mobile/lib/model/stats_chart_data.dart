@@ -17,11 +17,9 @@ class StatsChartData {
   late num instrumental;
   late num pop;
 
-  factory StatsChartData.fromJson(Map<String, dynamic> json) =>
-      StatsChartData(
-          day: json["day"],
-          nature: json["nature"]["playtime"],
-          instrumental: json["instrumental"]["playtime"],
-          pop: json["pop"]["playtime"]
-      );
+  factory StatsChartData.fromJson(Map<String, dynamic> json) => StatsChartData(
+      day: json["day"],
+      nature: json["nature"]["playtime"],
+      instrumental: json["instrumental"]["playtime"],
+      pop: json["pop"]["playtime"]);
 }

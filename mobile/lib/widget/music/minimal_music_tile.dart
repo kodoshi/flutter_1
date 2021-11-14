@@ -1,6 +1,6 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:assets_audio_player/assets_audio_player.dart';
 
 /// class which allows to build easy placeholders
 class MinimalMusicTile extends StatefulWidget {
@@ -39,18 +39,15 @@ class _MinimalMusicTileState extends State<MinimalMusicTile> {
             clipBehavior: Clip.antiAliasWithSaveLayer,
             elevation: 2,
             shape: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: BorderSide(color: Colors.black, width: 0)),
+                borderRadius: BorderRadius.circular(20), borderSide: BorderSide(color: Colors.black, width: 0)),
           ),
           Positioned(
             bottom: 14,
             left: 20,
-            child: Text(widget.metaTitle,
-                    style: TextStyle(fontSize: 15, color: Colors.white)),
+            child: Text(widget.metaTitle, style: TextStyle(fontSize: 15, color: Colors.white)),
           ),
         ],
       ),
-      
     );
   }
 }

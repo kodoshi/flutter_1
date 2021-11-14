@@ -1,9 +1,9 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_1/page/home_page.dart';
-import 'package:flutter_1/page/profile_page.dart';
-import 'package:flutter_1/page/playlists_page.dart';
 import 'package:flutter_1/page/community_page.dart';
+import 'package:flutter_1/page/home_page.dart';
+import 'package:flutter_1/page/playlists_page.dart';
+import 'package:flutter_1/page/profile_page.dart';
 import 'package:flutter_1/page/user_statistics.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 
