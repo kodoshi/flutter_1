@@ -19,6 +19,9 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   File? photoTaken;
   String? base64Image;
+  String? name;
+  String? surname;
+  String? email;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        photoTaken == null
+                        base64Image == null
                             ? Icon(
                                 Icons.account_circle,
                                 size: 80,
@@ -95,25 +98,19 @@ class _ProfilePageState extends State<ProfilePage> {
                   Text(getText('personalInformation').toString(), style: TextStyle(color: Colors.white, fontSize: 23)),
                   Row(
                     children: [
-                      Text(getText('firstName').toString() + ': Marine',
+                      Text(getText('firstName').toString() + ': ${name}',
                           style: TextStyle(color: Colors.white, fontSize: 20)),
                     ],
                   ),
                   Row(
                     children: [
-                      Text(getText('lastName').toString() + ': Lepen',
+                      Text(getText('lastName').toString() + ': ${surname}',
                           style: TextStyle(color: Colors.white, fontSize: 20)),
                     ],
                   ),
                   Row(
                     children: [
-                      Text(getText('username').toString() + ': lamarinade',
-                          style: TextStyle(color: Colors.white, fontSize: 20)),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(getText('email').toString() + ': marine.lepen@test.com',
+                      Text(getText('email').toString() + ': ${email}',
                           style: TextStyle(color: Colors.white, fontSize: 20)),
                     ],
                   )
