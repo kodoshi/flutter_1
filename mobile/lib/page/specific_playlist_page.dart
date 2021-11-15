@@ -1,10 +1,13 @@
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_1/bloc/tile/bloc.dart';
 import 'package:flutter_1/bloc/tile/event.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 import 'package:flutter_1/widget/footer.dart';
+import 'package:flutter_1/widget/music/playlist_description.dart';
+import 'package:flutter_1/widget/music/playlist_genre.dart';
+import 'package:flutter_1/widget/music/playlist_title.dart';
+import 'package:flutter_1/widget/music/song_list.dart';
 
 /// this page is used to display details about a specific playlist that was selected in Playlists page,
 /// and has a button which adds the specific playlist chosen to the Home screen
@@ -38,21 +41,6 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage>
     with TickerProviderStateMixin {
   var size, height, width;
 
-  Widget _getSongs(List<String> songs) {
-    int counter = 0;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: songs.map((item) {
-        counter++;
-        var pos = item.lastIndexOf('/');
-        var result = (pos != -1) ? item.substring(pos + 1) : item;
-        return Text("0" + counter.toString() + "     " + result,
-            style: TextStyle(color: Colors.white));
-      }).toList(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
@@ -74,31 +62,14 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage>
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: ListView(
-        children: <Widget>[
-          Container(
-              height: 60,
-              padding: EdgeInsets.fromLTRB(15, 25, 0, 0),
-              child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    widget.name,
-                    style: TextStyle(fontSize: 28),
-                    textAlign: TextAlign.center,
-                  ))),
-          Container(
-              height: 20,
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: Align(
-                  alignment: Alignment.center,
-                  child: Text(widget.category,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 14)))),
-          Container(
-              padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-              margin: EdgeInsets.fromLTRB(0, 20, 0, 15),
-              child: Divider(color: Colors.blueGrey)),
-          Container(
+      body: ListView(children: <Widget>[
+        PlaylistTitle(title: widget.name),
+        PlaylistGenre(genre: widget.category),
+        Container(
+            padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+            margin: EdgeInsets.fromLTRB(0, 20, 0, 15),
+            child: Divider(color: Colors.blueGrey)),
+        Container(
             margin: EdgeInsets.fromLTRB(80, 0, 80, 0),
             child: ElevatedButton(
               onPressed: () {
@@ -113,63 +84,27 @@ class _SpecificPlaylistPageState extends State<SpecificPlaylistPage>
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0)))),
-            ),
-          ),
-          Container(
-              padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-              margin: EdgeInsets.fromLTRB(0, 15, 0, 15),
-              child: Divider(color: Colors.blueGrey)),
-          Container(
-              padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-              child: Column(children: <Widget>[
-                Container(
-                    margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          getText('aboutPack').toString(),
-                          //style: TextStyle(color: Colors.white),
-                        ))),
-                Container(
-                    margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          widget.description,
-                          // style:
-                          //     TextStyle(color: Colors.white, height: 1.5),
-                        ))),
-                FadeTransition(
-                    opacity: animation,
-                    child: Container(
-                        height: 200.0,
-                        width: width,
-                        color: Colors.transparent,
-                        child: Container(
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0))),
-                            child: SizedBox(
-                                height: 200,
-                                child: ListView(
-                                  scrollDirection: Axis.vertical,
-                                  children: [
-                                    Container(
-                                        margin:
-                                            EdgeInsets.fromLTRB(10, 15, 0, 10),
-                                        child: Text("Music",
-                                            style: TextStyle(
-                                                color: Colors.white))),
-                                    Container(
-                                        margin:
-                                            EdgeInsets.fromLTRB(10, 15, 0, 10),
-                                        child: _getSongs(widget.songs))
-                                  ],
-                                ))))),
-              ]))
-        ],
-      ),
+            )),
+        Container(
+            padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+            margin: EdgeInsets.fromLTRB(0, 15, 0, 15),
+            child: Divider(color: Colors.blueGrey)),
+        Container(
+            padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+            child: Column(children: <Widget>[
+              Container(
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        getText('aboutPack').toString(),
+                      ))),
+              PlaylistDescription(description: widget.description),
+              FadeTransition(
+                  opacity: animation,
+                  child: SongList(songs: widget.songs, width: width)),
+            ]))
+      ]),
       bottomNavigationBar: new Footer(page: "playlists"),
     );
   }
