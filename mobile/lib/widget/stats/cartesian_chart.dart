@@ -78,8 +78,7 @@ class _CartesianChartWidgetState extends State<CartesianChartWidget> {
                 name: getText("nature").toString(),
                 animationDuration: 3000,
               ),
-            ],
-          );
+            ],);
         } else if (snapshot.data is StatErrorState) {
           StatErrorState error = snapshot.data as StatErrorState;
           return AlertError(
@@ -88,8 +87,7 @@ class _CartesianChartWidgetState extends State<CartesianChartWidget> {
           return Center(
             child: CircularProgressIndicator(),
           );
-        }
-      },
+        }},
     );
   }
 

@@ -47,7 +47,6 @@ class _MusicTileState extends State<MusicTile> {
   @override
   void initState() {
     super.initState();
-    print('TRACK NAME IN TILE: ' + widget.trackName);
     audioPlayer.open(
         Audio(widget.trackName,
             metas: Metas(
@@ -58,15 +57,8 @@ class _MusicTileState extends State<MusicTile> {
             )),
         autoStart: false,
         showNotification: true);
-    // Playlist(
-    //   audios: [
-    //     Audio("assets/audios/song1.mp3"),
-    //     Audio("assets/audios/song2.mp3")
-    //   ]
-    // ),
-    // loopMode: LoopMode.playlist
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -96,9 +88,7 @@ class _MusicTileState extends State<MusicTile> {
                     style: ElevatedButton.styleFrom(
                       primary: Colors.black54,
                       shape: CircleBorder(),
-                    ),
-                  );
-                }),
+                    ),);}),
           ),
           Positioned(
               bottom: 8,
@@ -115,10 +105,7 @@ class _MusicTileState extends State<MusicTile> {
             bottom: 14,
             left: 20,
             child: Text(widget.metaTitle, style: TextStyle(fontSize: 15, color: Colors.white)),
-          ),
-        ],
-      ),
-    );
+          ),],),);
   }
 
   void _playTrack(bool isPlaying) {

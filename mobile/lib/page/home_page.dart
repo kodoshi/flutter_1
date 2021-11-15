@@ -53,15 +53,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               print(snapshot.data.toString());
               if (snapshot.data is TileLoadedState) {
                 TileLoadedState data = snapshot.data as TileLoadedState;
-
                 return (data.tiles.length == 0)
                     ? Align(
                         alignment: Alignment.center,
                         child: Text(
                           getText('lonelyText').toString(),
                           style: TextStyle(
-                            fontSize: 20,
-                          ),
+                            fontSize: 20,),
                           textAlign: TextAlign.center,
                         ))
                     : GridView.builder(
@@ -83,8 +81,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                               category: data.tiles[index].category,
                               tileBloc: _tileBloc,
                               statBloc: _statBloc,
-                            ),
-                          );
+                            ),);
                         });
               } else if (snapshot.data is TileErrorState) {
                 TileErrorState error = snapshot.data as TileErrorState;
@@ -94,19 +91,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               } else {
                 return Center(
                   child: CircularProgressIndicator(),
-                );
-              }
-            },
-          ),
+                );}})
         ),
         backgroundColor: Theme.of(context).backgroundColor,
         bottomNavigationBar: new Footer(page: "home"));
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _tileBloc.dispose();
-    _statBloc.dispose();
   }
 }

@@ -34,26 +34,28 @@ class _SongListState extends State<SongList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 200.0,
-        width: widget.width,
-        color: Colors.transparent,
-        child: Container(
-            decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child: SizedBox(
-                height: 200,
-                child: ListView(
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Container(
-                        margin: EdgeInsets.fromLTRB(10, 15, 0, 10),
-                        child: Text("Music",
-                            style: TextStyle(color: Colors.white))),
-                    Container(
-                        margin: EdgeInsets.fromLTRB(10, 15, 0, 10),
-                        child: _getSongs(widget.songs))
-                  ],
-                ))));
+      height: 200.0,
+      width: widget.width,
+      color: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        child: SizedBox(
+          height: 200,
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            children: [
+              Container(
+                  margin: EdgeInsets.fromLTRB(10, 15, 0, 10),
+                  child: Text("Music", style: TextStyle(color: Colors.white))),
+              Container(
+                  margin: EdgeInsets.fromLTRB(10, 15, 0, 10),
+                  child: _getSongs(widget.songs))
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

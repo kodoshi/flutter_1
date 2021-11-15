@@ -69,16 +69,13 @@ class _CommunityPageState extends State<CommunityPage> {
                       CategoryButton(category: "Pop"),
                       CategoryButton(category: "Nature"),
                       CategoryButton(category: "Instrumental"),
-                    ],
-                  )),
-            )),
+                    ],)),)),
             StreamBuilder(
               stream: _playlistBloc.playlists,
               initialData: PlaylistInitState(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.data is PlaylistLoadedState) {
                   PlaylistLoadedState data = snapshot.data as PlaylistLoadedState;
-
                   return Container(
                       child: SizedBox(
                           height: 200,
@@ -89,8 +86,7 @@ class _CommunityPageState extends State<CommunityPage> {
                             crossAxisSpacing: 12.5,
                             mainAxisSpacing: 12.5,
                             crossAxisCount: 1,
-                            children: _buildMinimalTiles(data.playlists),
-                          )));
+                            children: _buildMinimalTiles(data.playlists),)));
                 } else if (snapshot.data is PlaylistErrorState) {
                   PlaylistErrorState error = snapshot.data as PlaylistErrorState;
                   return AlertError(
@@ -101,11 +97,7 @@ class _CommunityPageState extends State<CommunityPage> {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                }
-              },
-            ),
-          ],
-        ),
+                }},),],),
         backgroundColor: Theme.of(context).backgroundColor,
         bottomNavigationBar: new Footer(page: "community"));
   }

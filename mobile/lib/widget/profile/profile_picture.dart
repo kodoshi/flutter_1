@@ -16,43 +16,47 @@ class ProfilePictureWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (Container(
-        alignment: Alignment.topCenter,
-        child: Container(
-            height: 300,
-            width: 300,
-            child: SfCircularChart(
-              annotations: <CircularChartAnnotation>[
-                CircularChartAnnotation(
-                  angle: 0,
-                  radius: '0%',
-                  height: '100%',
-                  width: '100%',
-                  widget: Container(
-                      width: 190.0,
-                      height: 190.0,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              fit: BoxFit.fill, image: AssetImage('assets/images/street-japan-night.jpg')))),
-                ),
-              ],
-              series: <CircularSeries>[
-                DoughnutSeries<ProfileChartData, String>(
-                  dataSource: chartData,
-                  xValueMapper: (ProfileChartData data, _) => data.x,
-                  yValueMapper: (ProfileChartData data, _) => data.y,
-                  pointColorMapper: (ProfileChartData data, _) => data.color,
-                  radius: '75%',
-                  innerRadius: '80%',
-                ),
-              ],
-              legend: Legend(
-                isVisible: true,
-                overflowMode: LegendItemOverflowMode.wrap,
-                position: LegendPosition.bottom,
-                textStyle: TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
-                toggleSeriesVisibility: false,
-              ),
-            ))));
+      alignment: Alignment.topCenter,
+      child: Container(
+        height: 300,
+        width: 300,
+        child: SfCircularChart(
+          annotations: <CircularChartAnnotation>[
+            CircularChartAnnotation(
+              angle: 0,
+              radius: '0%',
+              height: '100%',
+              width: '100%',
+              widget: Container(
+                  width: 190.0,
+                  height: 190.0,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: AssetImage(
+                              'assets/images/street-japan-night.jpg')))),
+            ),
+          ],
+          series: <CircularSeries>[
+            DoughnutSeries<ProfileChartData, String>(
+              dataSource: chartData,
+              xValueMapper: (ProfileChartData data, _) => data.x,
+              yValueMapper: (ProfileChartData data, _) => data.y,
+              pointColorMapper: (ProfileChartData data, _) => data.color,
+              radius: '75%',
+              innerRadius: '80%',
+            ),
+          ],
+          legend: Legend(
+            isVisible: true,
+            overflowMode: LegendItemOverflowMode.wrap,
+            position: LegendPosition.bottom,
+            textStyle: TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
+            toggleSeriesVisibility: false,
+          ),
+        ),
+      ),
+    ));
   }
 }

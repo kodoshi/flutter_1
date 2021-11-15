@@ -94,7 +94,6 @@ class _PlaylistCategoryState extends State<PlaylistCategory> {
                     mainAxisSpacing: 12.5,
                     crossAxisCount: 1,
                     children: _getPlaylist(widget.data, widget.name)))),
-      ],
-    );
+      ],);
   }
 }
