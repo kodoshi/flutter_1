@@ -36,6 +36,7 @@ dependencies:
   equatable: ^2.0.3
   flutter_bloc: ^7.3.3
   animations: ^2.0.2
+  mockito: ^5.0.16
 
 dev_dependencies:
   flutter_test:
