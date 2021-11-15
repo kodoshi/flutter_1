@@ -11,8 +11,20 @@ import 'package:flutter_1/utils/globalVars.dart';
 class Footer extends StatelessWidget {
   final String? page;
 
-  final indexArray = ["home", "playlists", "community", "statistics", "profile",];
-  final redirectArray = [HomePage(), PlaylistsPage(), CommunityPage(), UserStatisticsPage(), ProfilePage(),];
+  final indexArray = [
+    "home",
+    "playlists",
+    "community",
+    "statistics",
+    "profile",
+  ];
+  final redirectArray = [
+    HomePage(),
+    PlaylistsPage(),
+    CommunityPage(),
+    UserStatisticsPage(),
+    ProfilePage(),
+  ];
   Footer({this.page});
 
   @override
@@ -25,11 +37,16 @@ class Footer extends StatelessWidget {
     }
 
     return BottomNavigationBar(
+      key: Key('bottom'),
       selectedItemColor: Theme.of(context).accentColor,
       unselectedItemColor: Colors.black,
       items: [
         new BottomNavigationBarItem(
-            icon: Icon(Icons.home), label: getText('home').toString()),
+            icon: Icon(Icons.home),
+            title: Text(
+              getText('home').toString(),
+              key: Key('home'),
+            )),
         new BottomNavigationBarItem(
           icon: Icon(Icons.library_music_outlined),
           label: getText('playlists').toString(),
