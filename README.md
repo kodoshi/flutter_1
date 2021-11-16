@@ -26,11 +26,12 @@ A cloud mongo instance is being used at the moment.
 
 Commands to start the Flutter app in /mobile folder:
 
-Change String_url in /lib/api/common/services.dart if API connecting cannot be established.
 
 `flutter pub get`
 
 `flutter run`
+
+Change String_url in /lib/api/common/services.dart if API connection cannot be established.
 
 ## API routes
 
