@@ -2,14 +2,13 @@
 
 Team members:
 
-- Gianni Saliniere-Coursy
-
 - Klivens Ziu
 
 - Lucas Mathieux
 
 - Leyton Ly
 
+- Gianni Saliniere-Coursy
 
 ## Backend
 
@@ -26,6 +25,8 @@ A cloud mongo instance is being used at the moment.
 ## Mobile
 
 Commands to start the Flutter app in /mobile folder:
+
+Change String_url in /lib/api/common/services.dart if API connecting cannot be established.
 
 `flutter pub get`
 
