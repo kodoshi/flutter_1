@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_1/page/community_page.dart';
 import 'package:flutter_1/page/home_page.dart';
-import 'package:flutter_1/page/playlists_page.dart';
-import 'package:flutter_1/page/profile_page.dart';
-import 'package:flutter_1/page/user_statistics.dart';
 import 'package:flutter_1/widget/footer.dart';
 import 'package:flutter_1/main.dart' as MyApp;
 import 'package:flutter_test/flutter_test.dart';
@@ -35,24 +31,19 @@ class AppNavigator {
   void showStatisticalPage() {
     _flutterNavigator.pushNamed('/statistics');
   }
-
   void showCommunityPage() {
     _flutterNavigator.pushNamed('/community');
   }
-
   void showProfilPage() {
     _flutterNavigator.pushNamed('/profile');
   }
-
   void showPlaylistPage() {
     _flutterNavigator.pushNamed('/playlists');
   }
 }
 
 class MockAppNavigator extends Mock implements AppNavigator {}
-
 //class MockFooter extends Mock implements Footer {}
-
 void main() {
   group('Navigation bar test', () {
     final appNavigator = MockAppNavigator();
