@@ -1,5 +1,6 @@
 import 'package:flutter_1/bloc/common/event.dart';
 
+/// custom event system
 abstract class TileEvent extends Event {
   const TileEvent();
 }

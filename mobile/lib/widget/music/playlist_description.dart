@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+/// class which holds description strings fulfilled by the api calls
 class PlaylistDescription extends StatefulWidget {
   final String description;
 

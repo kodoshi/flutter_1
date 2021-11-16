@@ -1,8 +1,11 @@
 import 'dart:convert';
 
-List<Playlist> playlistFromJson(String str) => List<Playlist>.from(json.decode(str).map((x) => Playlist.fromJson(x)));
+/// a Playlist model responsible for holding API returns
+List<Playlist> playlistFromJson(String str) =>
+    List<Playlist>.from(json.decode(str).map((x) => Playlist.fromJson(x)));
 
-String playlistToJson(List<Playlist> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String playlistToJson(List<Playlist> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Playlist {
   Playlist(
@@ -35,7 +38,8 @@ class Playlist {
       metaArtist: json["meta"]["artist"],
       metaAlbum: json["meta"]["album"],
       id: json["_id"],
-      songs: List<String>.from(json["songs"].map((x) => "assets/sounds/" + x.toString())));
+      songs: List<String>.from(
+          json["songs"].map((x) => "assets/sounds/" + x.toString())));
 
   Map<String, dynamic> toJson() => {
         "index": index,

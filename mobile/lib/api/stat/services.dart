@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 
 import '../exceptions.dart';
 
+/// covers API call to the backend, for user statistics
 abstract class StatRepo {
   Future<List<StatsChartData>> getStats();
 
@@ -48,7 +49,7 @@ class StatServices implements StatRepo {
   }
 
   @override
-  Future<void> addStat(String day, String category, int playtime) async {
+  Future<bool> addStat(String day, String category, int playtime) async {
     Uri uri = Uri.parse(ApiUrl.url + _PUT_STATS);
 
     Response response;
@@ -68,6 +69,6 @@ class StatServices implements StatRepo {
 
     if (response.statusCode != 200) throw DataException();
 
-    return;
+    return true; //CHANGED
   }
 }

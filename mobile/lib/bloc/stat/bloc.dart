@@ -7,6 +7,7 @@ import 'package:flutter_1/model/stats_chart_data.dart';
 
 import 'event.dart';
 
+/// contains BLoC logic for user statistics
 class StatsBloc {
   StatRepo repository;
 

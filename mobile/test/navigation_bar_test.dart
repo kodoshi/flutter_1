@@ -4,8 +4,11 @@ import 'package:flutter_1/page/home_page.dart';
 import 'package:flutter_1/page/playlists_page.dart';
 import 'package:flutter_1/page/profile_page.dart';
 import 'package:flutter_1/page/user_statistics.dart';
+import 'package:flutter_1/widget/footer.dart';
+import 'package:flutter_1/main.dart' as MyApp;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 
 class AppNavigatorFactory {
   AppNavigator get(BuildContext context) =>
@@ -48,6 +51,8 @@ class AppNavigator {
 
 class MockAppNavigator extends Mock implements AppNavigator {}
 
+//class MockFooter extends Mock implements Footer {}
+
 void main() {
   group('Navigation bar test', () {
     final appNavigator = MockAppNavigator();
@@ -56,50 +61,46 @@ void main() {
       reset(appNavigator);
     });
 
-    testWidgets('Button is present and triggers navigation to Home ',
+    testWidgets('Button is present and triggers navigation to Home.',
+        (WidgetTester tester) async {
+      //Future my_app = await MyApp.main();
+      final my_footer = new Footer(page: "home");
+      //await Settings.init(cacheProvider: SharePreferenceCache());
+      tester.pumpWidget(my_footer);
+      expect(my_footer.page, "home");
+    }, timeout: Timeout(Duration(seconds: 15)));
+    testWidgets('Button is present and triggers navigation to Playlist screen.',
         (WidgetTester tester) async {
       await tester.pumpWidget(MaterialApp(home: HomePage()));
 
-      expect(find.byType(Icon), findsOneWidget);
-      await tester.tap(find.byType(Icon));
-
+      expect(find.byIcon(Icons.library_music_outlined), findsOneWidget);
+      await tester.tap(find.byIcon(Icons.library_music_outlined));
       verify(appNavigator.showHomePage());
     });
-
-    testWidgets('Button is present and triggers navigation to Statistical ',
+    testWidgets(
+        'Button is present and triggers navigation to Community screen.',
         (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(home: UserStatisticsPage()));
+      await tester.pumpWidget(MaterialApp(home: HomePage()));
 
-      expect(find.byType(Icon), findsOneWidget);
-      await tester.tap(find.byType(Icon));
-
+      expect(
+          find.byIcon(Icons.supervised_user_circle_outlined), findsOneWidget);
+      await tester.tap(find.byIcon(Icons.supervised_user_circle_outlined));
       verify(appNavigator.showHomePage());
     });
-    testWidgets('Button is present and triggers navigation to Community ',
+    testWidgets('Button is present and triggers navigation to Stats screen.',
         (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(home: CommunityPage()));
+      await tester.pumpWidget(MaterialApp(home: HomePage()));
 
-      expect(find.byType(Icon), findsOneWidget);
-      await tester.tap(find.byType(Icon));
-
+      expect(find.byIcon(Icons.insert_chart_outlined_outlined), findsOneWidget);
+      await tester.tap(find.byIcon(Icons.insert_chart_outlined_outlined));
       verify(appNavigator.showHomePage());
     });
-    testWidgets('Button is present and triggers navigation to Profil ',
+    testWidgets('Button is present and triggers navigation to Profile screen.',
         (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(home: ProfilePage()));
+      await tester.pumpWidget(MaterialApp(home: HomePage()));
 
-      expect(find.byType(Icon), findsOneWidget);
-      await tester.tap(find.byType(Icon));
-
-      verify(appNavigator.showHomePage());
-    });
-    testWidgets('Button is present and triggers navigation to Playlist ',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(home: PlaylistsPage()));
-
-      expect(find.byType(Icon), findsOneWidget);
-      await tester.tap(find.byType(Icon));
-
+      expect(find.byIcon(Icons.account_circle_outlined), findsOneWidget);
+      await tester.tap(find.byIcon(Icons.account_circle_outlined));
       verify(appNavigator.showHomePage());
     });
   });

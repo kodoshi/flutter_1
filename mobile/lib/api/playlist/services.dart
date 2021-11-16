@@ -7,6 +7,7 @@ import 'package:http/http.dart';
 
 import '../exceptions.dart';
 
+/// covers API call to the backend, for playlists
 abstract class PlaylistRepo {
   Future<List<Playlist>> getPlaylists();
 }

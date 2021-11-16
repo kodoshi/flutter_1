@@ -6,6 +6,7 @@ import 'package:flutter_1/bloc/tile/event.dart';
 import 'package:flutter_1/bloc/tile/state.dart';
 import 'package:flutter_1/model/playlist.dart';
 
+/// contains BLoC logic for playlist objects, as tiles
 class TilesBloc {
   final TileRepo repository;
 

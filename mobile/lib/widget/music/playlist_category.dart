@@ -5,9 +5,9 @@ import 'package:flutter_1/bloc/tile/bloc.dart';
 import 'package:flutter_1/model/playlist.dart';
 import 'package:flutter_1/page/specific_playlist_page.dart';
 import 'package:flutter_1/utils/globalVars.dart';
-
 import 'minimal_music_tile.dart';
 
+/// class which is responsible for playlist tile rendering in Playlists screen
 class PlaylistCategory extends StatefulWidget {
   final String name;
   final List<Playlist> data;

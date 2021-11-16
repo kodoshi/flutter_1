@@ -7,6 +7,7 @@ import 'package:flutter_1/bloc/profile/event.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 import 'package:image_picker/image_picker.dart';
 
+/// custom widget that displays and has upload functionality over a selected picture
 class Picture extends StatefulWidget {
   final ProfilesBloc profileBloc;
   final String image;

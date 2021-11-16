@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_1/bloc/common/state.dart';
 
+/// Popup used when bloc architecture signals an issue with the service
 class AlertError extends StatefulWidget {
   final ErrorState error;
   final Function callback;

@@ -1,4 +1,5 @@
 
+/// a Profile model responsible for holding API returns
 class Profile {
   Profile({required this.name, required this.surname, required this.email, required this.image});
 

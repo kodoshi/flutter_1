@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+/// a Stat Chart model responsible for holding API returns
 List<StatsChartData> statsFromJson(String str) =>
     List<StatsChartData>.from(json.decode(str).map((x) => StatsChartData.fromJson(x)));
 

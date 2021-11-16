@@ -1,5 +1,6 @@
 import 'event.dart';
 
+/// custom error management system
 class ErrorState {
   final Event event;
   final String title;

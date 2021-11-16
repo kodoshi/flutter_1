@@ -3,6 +3,7 @@ import 'package:flutter_1/model/playlist.dart';
 
 import 'event.dart';
 
+/// custom event management system
 abstract class PlaylistState {
   const PlaylistState();
 }

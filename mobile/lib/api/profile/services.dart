@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 
 import '../exceptions.dart';
 
+/// covers API call to the backend, for user routes
 abstract class ProfileRepo {
   Future<Profile> getProfile();
 
@@ -48,7 +49,7 @@ class ProfileServices implements ProfileRepo {
   }
 
   @override
-  Future<void> updateImage(String image) async {
+  Future<bool> updateImage(String image) async {
     Uri uri = Uri.parse(ApiUrl.url + _POST_PROFILE);
 
     Response response;
@@ -67,6 +68,6 @@ class ProfileServices implements ProfileRepo {
 
     if (response.statusCode != 200) throw DataException();
 
-    return;
+    return true; //CHANGED
   }
 }

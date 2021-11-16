@@ -2,6 +2,7 @@ import 'package:flutter_1/bloc/common/state.dart';
 import 'package:flutter_1/bloc/tile/event.dart';
 import 'package:flutter_1/model/playlist.dart';
 
+/// custom state system, including errors
 abstract class TileState {
   const TileState();
 }

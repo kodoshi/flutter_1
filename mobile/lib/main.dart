@@ -61,4 +61,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-//accentColor: Color(0xFF1DE9B6)

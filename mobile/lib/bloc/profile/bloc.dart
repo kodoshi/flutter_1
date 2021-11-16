@@ -7,6 +7,7 @@ import 'package:flutter_1/model/profile.dart';
 
 import 'event.dart';
 
+/// contains BLoC logic for user profile details
 class ProfilesBloc {
   ProfileRepo repository;
 

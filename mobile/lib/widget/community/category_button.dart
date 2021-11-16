@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/// Holds the clickable buttons visible on top of the ListView.builder in the Community Page
 class CategoryButton extends StatefulWidget {
   final String category;
 

@@ -4,6 +4,7 @@ import 'package:flutter_1/model/profile.dart';
 import 'package:flutter_1/utils/globalVars.dart';
 import 'package:simple_bounce_effect/simple_bounce_effect.dart';
 
+/// basic widget which holds and renders the name, surname, email of a User, as Strings
 class UserInformation extends StatefulWidget {
   final Profile profile;
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+/// class which holds Genre strings fulfilled by the api calls
 class PlaylistGenre extends StatefulWidget {
   final String genre;
 

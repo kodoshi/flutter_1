@@ -1,3 +1,4 @@
+/// custom Error classes, thrown by the bloc architecture
 abstract class CustomException implements Exception {
   final String title;
   final String message;

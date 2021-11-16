@@ -7,6 +7,7 @@ import 'package:flutter_1/model/playlist.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
+/// covers API call to the backend, for user tiles and music
 abstract class TileRepo {
   Future<List<Playlist>> getTileList();
 
@@ -52,7 +53,7 @@ class TileServices implements TileRepo {
   }
 
   @override
-  Future<void> addTile(String id) async {
+  Future<bool> addTile(String id) async {
     Uri uri = Uri.parse(ApiUrl.url + _POST_TILES + "/" + id);
 
     Response response;
@@ -69,11 +70,11 @@ class TileServices implements TileRepo {
 
     if (response.statusCode != 200) throw DataException();
 
-    return;
+    return true;
   }
 
   @override
-  Future<void> removeTile(String id) async {
+  Future<bool> removeTile(String id) async {
     Uri uri = Uri.parse(ApiUrl.url + _DELETE_TILES + "/" + id);
 
     Response response;
@@ -90,6 +91,6 @@ class TileServices implements TileRepo {
 
     if (response.statusCode != 200) throw DataException();
 
-    return;
+    return true; //CHANGED
   }
 }

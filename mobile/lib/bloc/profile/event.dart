@@ -1,5 +1,6 @@
 import 'package:flutter_1/bloc/common/event.dart';
 
+/// custom event system
 abstract class ProfileEvent extends Event {
   const ProfileEvent();
 }

@@ -1,5 +1,6 @@
 import 'package:flutter_1/bloc/common/event.dart';
 
+/// custom Stat event system
 abstract class StatEvent extends Event {
   const StatEvent();
 }

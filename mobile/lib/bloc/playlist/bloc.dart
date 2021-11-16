@@ -7,6 +7,7 @@ import 'package:flutter_1/model/playlist.dart';
 
 import 'event.dart';
 
+/// contains BLoC logic for playlist objects
 class PlaylistsBloc {
   PlaylistRepo repository;
 

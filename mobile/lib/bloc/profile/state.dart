@@ -3,6 +3,7 @@ import 'package:flutter_1/model/profile.dart';
 
 import 'event.dart';
 
+/// custom state system, including error states
 abstract class ProfileState {
   const ProfileState();
 }

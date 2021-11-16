@@ -3,6 +3,7 @@ import 'package:flutter_1/model/stats_chart_data.dart';
 
 import 'event.dart';
 
+/// custom Stat state, plus errors
 abstract class StatState {
   const StatState();
 }

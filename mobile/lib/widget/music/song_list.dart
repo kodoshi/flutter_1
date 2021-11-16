@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+/// class which holds a list of Song strings fulfilled by the api calls
 class SongList extends StatefulWidget {
   final double width;
   final List<String> songs;
