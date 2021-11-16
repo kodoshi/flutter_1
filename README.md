@@ -35,7 +35,9 @@ Change String_url in /lib/api/common/services.dart if API connection cannot be e
 
 ## API routes
 
-#### More details can be found in the JSDOC annotations inside /backend/docs/index.html, db models also included below. A Postman collection is included in the /postman folder, it details routes, arguments and holds examples of responses.
+More details can be found in the JSDOC annotations inside /backend/docs/index.html, db models also included below. 
+
+A Postman collection is included in the /postman folder, it details routes, arguments and holds examples of responses.
 
   
 
