@@ -2,14 +2,13 @@
 
 Team members:
 
-- Gianni Saliniere-Coursy
-
 - Klivens Ziu
 
 - Lucas Mathieux
 
 - Leyton Ly
 
+- Gianni Saliniere-Coursy
 
 ## Backend
 
@@ -27,13 +26,18 @@ A cloud mongo instance is being used at the moment.
 
 Commands to start the Flutter app in /mobile folder:
 
+
 `flutter pub get`
 
 `flutter run`
 
+Change String_url in /lib/api/common/services.dart if API connection cannot be established.
+
 ## API routes
 
-#### More details can be found in the JSDOC annotations inside /backend/docs/index.html, db models also included below. A Postman collection is included in the /postman folder, it details routes, arguments and holds examples of responses.
+More details can be found in the JSDOC annotations inside /backend/docs/index.html, db models also included below. 
+
+A Postman collection is included in the /postman folder, it details routes, arguments and holds examples of responses.
 
   
 
