@@ -8,7 +8,6 @@ Team members:
 
 - Leyton Ly
 
-- Gianni Saliniere-Coursy
 
 ## Backend
 
